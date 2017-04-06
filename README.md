@@ -21,12 +21,12 @@ This repository serves to store the experiments, data, analyses, and documentati
 
 ### git/github
 
-Beginner's [git tutorial](https://try.github.io/)
+- Beginner's [git tutorial](https://try.github.io/)
 
-git command [cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+- git command [cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
 
-Markdown [cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- Markdown [cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-Visual git overview:
+- Visual git overview:
 
 ![overview](https://git-scm.com/book/en/v2/images/areas.png)
