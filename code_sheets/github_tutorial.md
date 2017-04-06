@@ -75,3 +75,5 @@ git push
 ```
 
 Read the error message you got and we'll got from there :)
+
+**BIG WORD OF WARNING: DON'T EVER UPLOAD NON-ANONYMIZED DATA!** The best way to avoid accidentally doing this is by specifying a .gitignore file and consistently naming data files that have non-anonymized data in them.
