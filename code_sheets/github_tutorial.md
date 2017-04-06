@@ -74,6 +74,6 @@ You have a number of files ready to be merged into the master branch. Do it!
 git push
 ```
 
-Read the error message you got and we'll got from there :)
+Read the error message you got and we'll go from there :)
 
 **BIG WORD OF WARNING: DON'T EVER UPLOAD NON-ANONYMIZED DATA!** The best way to avoid accidentally doing this is by specifying a .gitignore file and consistently naming data files that have non-anonymized data in them.
