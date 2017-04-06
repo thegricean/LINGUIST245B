@@ -27,6 +27,6 @@ This repository serves to store the experiments, data, analyses, and documentati
 
 - Markdown [cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-- Visual git overview:
+- Visual git overview from [this nice explanation](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) of the general structure of git:
 
 ![overview](https://git-scm.com/book/en/v2/images/areas.png)
