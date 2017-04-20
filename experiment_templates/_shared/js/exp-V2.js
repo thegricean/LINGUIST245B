@@ -17,14 +17,11 @@ make_exp = function() {
    * in exp.structure
    */
   f.go = function(num_slides_to_skip) {
-    /* first call end of whatever slide we _were_ on */
-    if (typeof _s !== 'undefined' && _s.end) {
-        _s.end();
-    }
+    /* previously: we first called end of whatever slide we _were_ on 
+        this was redundent with what was done in _stream */
 
-    /* then figure out what slide to go to next */
+    /* figure out what slide to go to next */
     this.slideIndex++;
-
     if (this.slideIndex < this.structure.length) {
       /*
        * in the original, there's an option to do different versions of the

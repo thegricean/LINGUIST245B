@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <title>Title of This Experiment</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="../_shared/js/exp-V2.js"></script>
+    <script src="../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../_shared/js/mmturkey.js "></script>
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/template.js"></script>
+
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <img src="../_shared/images/cocologo.png" alt="Stanford CoCoLab" id="cocologo"></img>
+    <p id="cocolab">Stanford CoCoLab</p>
+    <p id="instruct-text">You will see {{}} and be asked some questions about them. The HIT should take ~{{}} minutes. Please pay attention, thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact Erin Bennett at <a href="mailto://erindb@stanford.edu">erindb@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+  </div>
+
+  <div class="slide" id="instructions">
+    <h3>Instructions</h3>
+    <p>Here are some instructions.</p>
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+  <div class="slide" id="single_trial">
+    <p>Here is a single trial. Depending on the condition, you'll see different words below:</p>
+    <p class="display_condition">{{}}</p>
+    <input type="text" id="text_response"></input>
+    <button onclick="_s.button()">Continue</button>
+    <p class="err">Please write something.</p>
+  </div>
+
+  <div class="slide" id="one_slider">
+    <p>Here is one slider. For every trial in this block, you get an input to the 'present_handle' function. You can use that variable to display different prompts:</p>
+    <p class="prompt"></p>
+    <table id="slider_table" class="slider_table">
+      <tr><td class="left">completely disagree</td><td class="right">completely agree</td></tr>
+      <tr><td colspan="2"><div id="single_slider" class="slider"></div></td></tr>
+    </table>
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please adjust the slider before continuing.</div>
+  </div>
+
+  <div class="slide" id="multi_slider">
+    <p>Here are a bunch of sliders.</p>
+    <p>How likely do you think it is that someone would say each of the following?</p>
+    <table id="multi_slider_table" class="slider_table">
+      <tr><td></td><td class="left">very unlikely</td><td class="right">very likely</td></tr>
+    </table>
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please adjust all the sliders before continuing.</div>
+  </div>
+
+  <div class="slide" id="vertical_sliders">
+    <p>Here are a bunch of vertical sliders.</p>
+    <p id="vertical_question">{{}}</p>
+    <table id="vertical_slider_table" class="slider_table">
+      <tbody>
+        <tr id="sliders">
+        </tr>
+        <tr id="bin_labels">
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="_s.button()">Continue</button>
+    <div class="err">Please adjust all the sliders before continuing.</div>
+  </div>
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Were there any problems or bugs in the experiment?</p>
+      <textarea id="problems" rows="2" cols="50"></textarea>
+
+      <p>What do you think is a fair price for the work you did?</p>
+      <textarea id="fairprice" rows="1" cols="10"></textarea>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select>
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your Time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
