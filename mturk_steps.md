@@ -37,19 +37,19 @@ Make sure to put all files related to putting the experiment on MTurk in a speci
 *trials.csv
 *mturk.csv
 *mturk/
-'''
+```
 
 Create a config file (e.g., experiment.config) just like the one shown on the [submiterator github page](https://github.com/feste/Submiterator)). Modify it to your purposes, but leave "liveHIT" set to "no". Once you run the following command from within the mturk directory, you should see output that includes a URL where you will be able to see your experiment in the MTurk Sandbox.
 
-```submiterator posthit experiment'''
+```submiterator posthit experiment```
 
 Follow the URL to your experiment. Run through it. Did the data submit successfully to MTurk? If so, it will say so on the MTurk website and you should be able to run the following command:
 
-```submiterator getresults experiment'''
+```submiterator getresults experiment```
 
 This will generate a file called experiment.results. The format will be messy. To convert it to something useful you can load into R (or view in Excel), run
 
-```submiterator reformat experiment''' 
+```submiterator reformat experiment```
 
 ### Test that you are recording the right information
 
@@ -59,4 +59,4 @@ It is good practice to make sure that you're recording the information you need 
 
 Make sure you add enough money to your requester account to cover the experiment costs. There's a 20% fee for HITs with fewer than 10 assignments, and 40% for HITs with more than 10 assignments. If you want to circumvent the 40% fee, you can use Michael Henry Tessler's batched submiterator code, an example of which is shown [here](https://github.com/mhtess/mturk-demo) (this is not entirely straightforward, so don't worry about this until you're actually ready to run the experiment).
 
-When you're ready, set "liveHIT" to "yes" in the experiment.config file, run ```submiterator posthit experiment''', and it's on the web for all to participate in!
+When you're ready, set "liveHIT" to "yes" in the experiment.config file, run ```submiterator posthit experiment```, and it's on the web for all to participate in!
