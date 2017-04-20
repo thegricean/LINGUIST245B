@@ -1,6 +1,6 @@
 # git/github tutorial
 
-This code sheet demonstrates the basics of how to clone into a repository, add / change files, and merge those changes back into the repository.
+This code sheet demonstrates the basics of how to create a github repository, clone it, add / change files, and merge those changes back into the repository.
 
 ## Common commands
 

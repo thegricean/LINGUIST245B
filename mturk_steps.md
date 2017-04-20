@@ -6,6 +6,16 @@ For example, use this template or this one to build off of.
 
 Remember to use the developer console to help in debugging. This is useful, for example, if nothing happens when you open your html file in the browser, or if something isn't working as it should. You can get to the console in Chrome on a Mac with the keyboard shortcut Cmd-option-j or by clicking on View > Developer > Console.
 
+Here are a number of experiments that use different kinds of trial structures and dependent measures:
+
+0. Erin Bennett's most [basic experiment template](https://github.com/feste/experiment_template) -- can use this to build up your experiment from scratch.
+1. Michael Henry's causals experiment with three between-subjects conditions (prior, speaker, listener) -- depending on condition, uses a (continuous) slider or a (categorical) radio button dependent measure. Fills in a table from pre-specified distributions.
+2. [Image presentation with free production](http://stanford.edu/~jdegen/18_prod_calibr_targetColorContext/experiment/norming.html)
+3. [Word-by-word self-paced reading times with image presentations and truth-value judgments](http://stanford.edu/~jdegen/spr_pilot/experiment/rt.html) (this is very much in beta mode, so it's unlikely that information is getting recorded correctly, but the experiment itself runs.)
+4. Block design: first block with [drag-and-drop of images](http://stanford.edu/~jdegen/10_distributional_learning/experiment/norming.html) into a central location. Second block with free production.
+5. Short vignette followed by [two-part comprehension test](http://stanford.edu/~jdegen/23_qud_production/alternatives.html) (text field and correct choice of radio button) before proceeding to slider judgments (forced production).
+
+
 ### Upload experiment to your Stanford web space
 
 You can either do this in the console or via a desktop application like [Fetch](https://uit.stanford.edu/software/fetch). [Here](https://uit.stanford.edu/service/afs/file-transfer/macintosh) are the official Stanford configuration instructions for Fetch.

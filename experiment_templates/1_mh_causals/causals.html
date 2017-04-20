@@ -1,0 +1,234 @@
+<html>
+
+<head>
+    <title>Language study</title>
+
+    <!--JS-->
+    <!-- external general utilities -->
+    <script src="_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="_shared/js/exp-V2.js"></script>
+    <script src="_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="_shared/js/mmturkey.js "></script>
+    <script src="_shared/js/browserCheck.js"></script>
+    <script src="_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <script src="js/local-utils.js"></script>
+
+    <!--CSS-->
+    <link href="_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/causals.js"></script>
+    <script src="js/stims.js"></script>
+
+    <script src="_shared/js/uniqueturker.js"></script>
+
+  </head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <img src="_shared/images/cocologo.png" alt="Stanford CoCoLab" id="cocologo"></img>
+    <p id="cocolab">Stanford CoCoLab</p>
+    <p id="instruct-text">You will be asked short questions about hypothetical situations. The HIT should take approximately 5 minutes. Please pay attention, thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+
+    <p style="font-family:courier; font-size:14px; text-align: justify;">Please note: There will be multiple posted versions of this HIT (name: <strong>Language Study - Causes 319</strong>) throughout the next few days. Please attempt only one HIT this series. You will not be allowed to complete multiple HITs in this series.</p>
+
+    <p id="legal" style="text-align: justify;">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact M.H. Tessler at <a href="mailto://mtessler@stanford.edu">mtessler@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+  </div>
+
+  <div class="slide" id="instructions">
+    <h3>Instructions </h3>
+
+    <p class="instruct">
+      You are part of group of astronaut-scientists exploring distant planets in the newly discovered Silky Bay galaxy.
+      Your scientist team is trying to learn about different things on each planet.
+      Some of them are inhabited by friendly, advanced civilzations.
+      Others are uninhabited.
+      <br><br>
+      You will visit <span id="total-num">{{}}</span> different planets.
+      On each planet, you will see the results of an experiment that your team carried out on the planet.
+      You will then answer a few questions about what you think is happening on the planet.
+      <br><br>
+      Press continue to begin.
+    </p>
+
+    <button onclick="_s.button()">Continue</button>
+
+  </div>
+  <div class="slide" id="main_task">
+    <br>
+    <p class="data">
+
+    </p>
+    <table style="width:100%" table-layout="fixed">
+      <tr align="center">
+        <th id="h-1"></th>
+        <th id="h0"></th>
+        <th id="h1"></th>
+        <th id="h2"></th>
+        <th id="h3"></th>
+        <th id="h4"></th>
+        <th id="h5"></th>
+        <th id="h6"></th>
+        <th id="h7"></th>
+        <th id="h8"></th>
+        <th id="h9"></th>
+        <th id="h10"></th>
+      </tr>
+      <tr align="center">
+        <td id="d-1">successes</th>
+        <td id="d0"></th>
+        <td id="d1"></th>
+        <td id="d2"></th>
+        <td id="d3"></th>
+        <td id="d4"></th>
+        <td id="d5"></th>
+        <td id="d6"></th>
+        <td id="d7"></th>
+        <td id="d8"></th>
+        <td id="d9"></th>
+        <td id="d10"></th>
+      </tr>
+      <tr align="center">
+        <td id="d-1a">attempted</th>
+        <td id="d0a" class="totalNum"></th>
+        <td id="d1a" class="totalNum"></th>
+        <td id="d2a" class="totalNum"></th>
+        <td id="d3a" class="totalNum"></th>
+        <td id="d4a" class="totalNum"></th>
+        <td id="d5a" class="totalNum"></th>
+        <td id="d6a" class="totalNum"></th>
+        <td id="d7a" class="totalNum"></th>
+        <td id="d8a" class="totalNum"></th>
+        <td id="d9a" class="totalNum"></th>
+        <td id="d10a" class="totalNum"></th>
+      </tr>
+    </table>
+
+
+    <!-- PRIOR Question -->
+    <p class="question0"></p>
+    <p class="slider_number" id="prior_number"></p>
+    <table id="slider_table0" class="slider_table">
+      <tr><td class="left">0</td><td class="right">100</td></tr>
+      <tr><td colspan="2"><div id="single_slider0" class="slider"></div></td></tr>
+    </table>
+
+    <p class="task_prompt"> </p>
+    <p class="question2"> </p>
+
+    <!-- LISTENER Question -->
+
+    <p class="slider_number" id="listener_number"></p>
+    <table id="slider_table2" class="slider_table">
+      <tr><td class="left">0</td><td class="right">100</td></tr>
+      <tr><td colspan="2"><div id="single_slider2" class="slider"></div></td></tr>
+    </table>
+
+    <!-- SPEAKER Question -->
+
+    <div id="speaker_choices">
+      <label>
+        <input type="radio"  name="speaker" value="No"/>No
+      </label>
+      <label>
+        <input type="radio"  name="speaker" value="Yes"/>Yes
+      </label>
+    </div>
+
+    <button onclick="_s.button()">Continue</button>
+    <p class="err">Please respond to the questions.</p>
+
+  </div>
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+
+
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+
+
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Were there any problems or bugs in the experiment?</p>
+      <textarea id="problems" rows="2" cols="50"></textarea>
+
+
+      <p>What do you think is a fair price for the work you did?</p>
+      <textarea id="fairprice" rows="1" cols="10"></textarea>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="99"></option></label>
+        <label><option value="-1">Worse than the Average HIT</option></label>
+        <label><option value="0" >An Average HIT</option></label>
+        <label><option value="1">Better than average HIT</option></label>
+      </select>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Any additional comments about this experiment:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your Time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

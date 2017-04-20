@@ -1,0 +1,170 @@
+<html>
+
+<head>
+    <title>Language study</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="../../_shared/js/exp-V2.js"></script>
+    <script src="../../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../../_shared/js/mmturkey.js "></script>
+    <script src="../../_shared/js/browserCheck.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <script src="../../_shared/js/utils.js"></script>
+    <script src="../../_shared/preload.js"></script>    
+
+    <!--CSS-->
+    <link href="../../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/norming.js"></script>
+    
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <img src="../../_shared/images/cocologo.png" alt="Stanford CoCoLab" id="cocologo"></img>
+    <p id="cocolab">Stanford CoCoLab</p>
+    <p id="instruct-text">Thank you for participating in our study. In this study, you will read XXX sentences that describe images and answer questions about them.
+    </p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">Legal information: By answering the following
+    questions, you are participating in a study being performed by
+    cognitive scientists in the Stanford Department of Psychology. If
+    you have questions about this research, please contact Judith
+    Degen at <a
+    href="mailto://jdegen@stanford.edu">jdegen@stanford.edu</a> or
+    Noah Goodman at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+  </div>
+
+  <div class="slide" id="practicetrial">
+    <p id="practice1">This is how it works: You'll see an image like the one below. Take as much time as you need to look at it. After a few seconds, a message will tell you to press the space bar to see a description of the image. Someone who saw the image came up with this description. You'll read the description one word at a time. Press the space bar after each word to advance to see the next word in the sentence. Go ahead and try it out now. <br><span style="color:red;">Press the space bar to advance to the next word!</span>
+    </p>
+
+    <div id="practiceimage">
+      <img src="images/practiceimage.jpg" style="height:150px;">
+    </div>
+
+    <p>
+      <span id="p1" class="sprword">John</span>
+      <span id="p2" class="sprword">says:</span>
+      <span id="p3" class="sprword">The</span>
+      <span id="p4" class="sprword">house</span>
+      <span id="p5" class="sprword">has</span>
+      <span id="p6" class="sprword">a</span>
+      <span id="p7" class="sprword">chimney.</span>
+    </p>
+        
+    <p id="practice2">Great! After you get through the sentence, you'll be asked to rate whether the sentence you read truthfully describes the picture.
+    <br>
+    Ready?
+    </p>
+
+    <button id="contbutton" onclick="_s.button()">Continue</button>
+</div>
+
+  <div class="slide" id="sprtrial">
+    <p id="contextsentence">{{}}</p>
+
+    <div id="testimage">
+        {{}}
+    </div>
+
+    <div id="sentence">
+      {{}}
+    </div>
+
+    <div id="truefalse">
+      <p>Did the sentence truthfully describe the picture?</p>
+        <label><input id="no" type="radio"  name="tf" value="No"/>No</label>
+        <label><input id="yes" type="radio"  name="tf" value="Yes"/>Yes</label>   
+    </div>
+  
+  <br>
+    <button id="advancebutton" onclick="_s.button()">Continue</button>
+  
+    <div class="err">Please select an answer before continuing.</div>  
+  
+  </div>
+
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select>
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your Time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
