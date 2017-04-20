@@ -36,8 +36,6 @@ This repository serves to store the experiments, data, analyses, and documentati
 
 ### Code up experiment 
 
-For example, use this template or this one to build off of. 
-
 Remember to use the developer console to help in debugging. This is useful, for example, if nothing happens when you open your html file in the browser, or if something isn't working as it should. You can get to the console in Chrome on a Mac with the keyboard shortcut Cmd-option-j or by clicking on View > Developer > Console.
 
 Here are a number of experiments that use different kinds of trial structures and dependent measures:
