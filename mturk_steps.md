@@ -10,7 +10,10 @@ Remember to use the developer console to help in debugging. This is useful, for 
 
 You can either do this in the console or via a desktop application like [Fetch](https://uit.stanford.edu/software/fetch). [Here](https://uit.stanford.edu/service/afs/file-transfer/macintosh) are the official Stanford configuration instructions for Fetch.
 
-```scp -r XXX jdegen@cardinal.stanford.edu:./XXX'''
+```
+scp -r XXX jdegen@cardinal.stanford.edu:./XXX
+```
+
 
 ### Test experiment in the MTurk sandbox
 
