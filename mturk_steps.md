@@ -18,10 +18,14 @@ Here are a number of experiments that use different kinds of trial structures an
 
 ### Upload experiment to your Stanford web space
 
-You can either do this in the console or via a desktop application like [Fetch](https://uit.stanford.edu/software/fetch). [Here](https://uit.stanford.edu/service/afs/file-transfer/macintosh) are the official Stanford configuration instructions for Fetch.
+You can either do this via the command line or via a desktop application like [Fetch](https://uit.stanford.edu/software/fetch). [Here](https://uit.stanford.edu/service/afs/file-transfer/macintosh) are the official Stanford configuration instructions for Fetch. If you want to do it via the command line, use the ```scp``` command:
 
 ```
-scp -r XXX jdegen@cardinal.stanford.edu:./XXX
+scp -r EXPERIMENT_NAME SUNET@cardinal.stanford.edu:/afs/.ir.stanford.edu/users/PATH_TO_WWW
+```
+
+```
+scp -r 0_template/ jdegen@cardinal.stanford.edu:/afs/.ir.stanford.edu/users/j/d/jdegen/WWW
 ```
 
 
