@@ -1,0 +1,68 @@
+.slider {
+  /* default is width 400 and margin 10 */
+	width: 400;
+	margin: 10px;
+}
+
+.evidence{
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 20px;
+}
+
+.query{
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 20px;
+}
+
+.err{
+	color: red;
+}
+
+.kind{
+	font-size: 16px;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.instruct{
+	text-align: justify;
+  margin-left:100px;
+  margin-right:100px;
+}
+
+.data{
+	text-align: justify;
+  /*margin-left:100px;
+  margin-right:100px;*/
+}
+
+
+.vertical_slider {
+	width: 10px;
+	height: 300px;
+	margin-left: 35px;
+	margin-right: 35px
+}
+
+.bin_label{
+	text-align: center;
+}
+
+.question0{
+  font-size: 20px;
+}
+
+.question1{
+  font-size: 20px;
+}
+
+.slider_number {
+  margin: 0px;
+}
+
+#speaker_choices{
+  margin-bottom: 40px;
+}
+
+input[type="radio"]{
+  margin: 0 5px 0 30px;
+}

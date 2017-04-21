@@ -17,22 +17,34 @@ function make_slides(f) {
 
   slides.single_trial = slide({
     name: "single_trial",
-    start: function() {
+    present: exp.all_stims,
+    present_handle: function(stim) {
       $(".err").hide();
-      $(".display_condition").html("You are in " + exp.condition + ".");
+      this.stim = stim;
+      console.log(stim.item);
+      $(".display_condition").html("Do you like " + stim.item + "?");
     },
     button : function() {
-      response = $("#text_response").val();
-      if (response.length == 0) {
+      this.response = $('input[name="pet"]:checked').val();
+      if (this.response == undefined) {
         $(".err").show();
       } else {
-        exp.data_trials.push({
-          "trial_type" : "single_trial",
-          "response" : response
-        });
-        exp.go(); //make sure this is at the *end*, after you log your data
+        this.log_responses();
+        _stream.apply(this); 
+        // exp.data_trials.push({
+        //   "trial_type" : "single_trial",
+        //   "response" : response
+        // });
+        // exp.go(); //make sure this is at the *end*, after you log your data
       }
     },
+    log_responses : function() {
+      exp.data_trials.push({
+        "trial_type" : "pet_trial",
+        "pet" : this.stim.item,
+        "response" : this.response
+      });
+    }
   });
 
   slides.one_slider = slide({
@@ -282,7 +294,7 @@ function make_slides(f) {
 function init() {
   exp.trials = [];
   exp.catch_trials = [];
-  exp.condition = _.sample(["CONDITION 1", "condition 2"]); //can randomize between subject conditions here
+  exp.all_stims = _.shuffle(pets); //can randomize between subject conditions here
   exp.system = {
       Browser : BrowserDetect.browser,
       OS : BrowserDetect.OS,

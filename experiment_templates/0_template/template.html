@@ -32,6 +32,7 @@
     <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
 
     <!-- experiment file -->
+    <script src="js/stims.js"></script>
     <script src="js/template.js"></script>
 
 </head>
@@ -54,11 +55,12 @@
   </div>
 
   <div class="slide" id="single_trial">
-    <p>Here is a single trial. Depending on the condition, you'll see different words below:</p>
     <p class="display_condition">{{}}</p>
-    <input type="text" id="text_response"></input>
+      <label><input type="radio"  name="pet" value="No"/>No</label>
+      <label><input type="radio"  name="pet" value="Yes"/>Yes</label>
+      <br>
     <button onclick="_s.button()">Continue</button>
-    <p class="err">Please write something.</p>
+    <p class="err">Please click a button.</p>
   </div>
 
   <div class="slide" id="one_slider">
