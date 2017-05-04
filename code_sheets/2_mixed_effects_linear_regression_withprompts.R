@@ -7,7 +7,7 @@ library(languageR)
 library(lme4)
 
 # Let's run our first mixed effects linear regression model! We start by running the simplest linear regression model for predicting RTs (only frequency predictor) with by-subjects random intercepts.
-m = lmer(RT ~ Frequency + (1|Subject), data=lexdec)
+m = lmer(RT ~ Frequency + (1|Subject), data=lexdec, REML=F)
 summary(m)
 
 # Let's look at the R^2 -- this is much higher compared to the simple linear model! 
@@ -32,7 +32,7 @@ max(ranef(m)$Word[1])
 min(ranef(m)$Word[1])
 
 # Let's add random by-subject slopes for frequency.
-m = lmer(RT ~ Frequency + (1 + Frequency|Subject) + (1|Word), data=lexdec)
+m = lmer(RT ~ Frequency + (1 + Frequency|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
 
 # There are now two adjustment columns by subject, one for the intercepts and one for the slopes. We can see using summary() that there is greater variance in the intercepts than in the slopes. 
@@ -46,22 +46,22 @@ plot(ranef(m)$Subject)
 ?pvalues
 
 # To compute p-values for fixed effects via model comparison:
-m.0 = lmer(RT ~ (1|Subject) + (1|Word), data=lexdec)
+m.0 = lmer(RT ~ (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.0)
 
-m.1 = lmer(RT ~ Frequency + (1|Subject) + (1|Word), data=lexdec)
+m.1 = lmer(RT ~ Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.1)
 
 anova(m.0,m.1)
 
-m.2 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec)
+m.2 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.2)
 
 anova(m.1,m.2)
 
 # To compute p-values for fixed effects via lmerTest:
 library(lmerTest)
-m.3 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec)
+m.3 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.3)
 
 
