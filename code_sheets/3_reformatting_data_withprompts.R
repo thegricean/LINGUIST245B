@@ -24,9 +24,13 @@ long = wide %>%
   gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
   arrange(Subject)
 head(long)
+long = long %>%
+  arrange(NativeLanguage)
 
 # 1. We just sorted the resulting long format by Subject. Sort it by Word instead.
-...
+long = wide %>%
+  gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
+  arrange(Word)
 
 # To convert back to wide format
 newwide = long %>%
@@ -34,12 +38,14 @@ newwide = long %>%
 head(newwide)
 
 # We can add word level information to the long format using inner_join() -- see also the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
+wordinfo = rbind(wordinfo,data.frame(Word="bla",Frequency=5,FamilySize=2,Length=3,Class="plant"))
 lexdec = inner_join(long,wordinfo,by=c("Word"))
 head(lexdec)
 nrow(lexdec)
 
 # Are we sure the data.frames got merged correctly? Let's inspect a few cases.
 wordinfo[wordinfo$Word == "almond",]
+lexdec[lexdec$Word == "almond",]
 
 # 2. Convince yourself that the information got correctly added by testing a few more cases.
 ...
@@ -51,16 +57,19 @@ summary(m)
 # Often, we'll want to summarize information by groups. For example, if we want to compute RT means by subject:
 subj_means = lexdec %>%
   group_by(Subject) %>%
-  summarize(Mean = mean(RT))
+  summarize(Mean = mean(RT), SD = sd(RT), Max = max(RT))
 
 # 3. Compute RT means by Word instead.
-...
+subj_means = lexdec %>%
+  group_by(Word) %>%
+  summarize(Mean = mean(RT), SD = sd(RT), Max = max(RT))
+View(subj_means)
 
 # Sometimes we want to save data.frames or R console output to a file. For example, we might want to save our newly created lexdec dataset:
 write.csv(lexdec,file="data/lexdec_long.csv")
 
 # 4. Using the R help, figure out how to suppress the row.names and the quotes in the output and re-write the file.
-...
+write.csv(lexdec,file="data/lexdec_long.csv",row.names=FALSE,quote = F)
 
 # We can also save the console output to a file (for example, if you've run a particularly time-consuming regression analysis you may want to save the model results). 
 out = capture.output(summary(m))
@@ -74,4 +83,4 @@ save(m,file="data/mymodel.RData")
 load("data/mymodel.RData")
 
 # 5. Why was "mymodel.RData" a poorly chosen name for the file? Choose a better name.
-...
+save(m,file="data/m.RData")
