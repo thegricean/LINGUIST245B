@@ -7,6 +7,7 @@ library(languageR)
 # The dative alternation dataset from Bresnan et al. 2007
 data(dative)
 summary(dative)
+names(dative)
 
 # What's the distribution of true/false responses?
 table(dative$RealizationOfRecipient)
@@ -26,19 +27,21 @@ summary(m.norandom)
 logit2prop <- function(l){exp(l)/(1+exp(l))}
 
 # 2. Use the logit2prop function to find out the probability of a PP realization
-
+logit2prop(-1.045)
 
 # Let's add a random effect (verb intercept). There is clearly a lot of by-verb variability:
 table(dative$Verb,dative$RealizationOfRecipient)
 
 # Note the use of glmer() instead of glm() for mixed effects. We again specify the binomial noise distribution.
-m = glmer(RealizationOfRecipient ~ (1|Verb), data=dative, family="binomial")
+m = glmer(RealizationOfRecipient ~ 1 + (1|Verb), data=centered, family="binomial")
 summary(m)
 
 # 3. How does the overall intercept change? Convert this back into probability space. What was the effect of adding random by-verb variability?
 
 
 # Let's add a predictor.
+table(dative[,c("AnimacyOfRec","RealizationOfRecipient")])
+
 m = glmer(RealizationOfRecipient ~ AnimacyOfRec + (1|Verb), data=dative, family="binomial")
 summary(m)
 
@@ -55,11 +58,11 @@ m.c = glmer(RealizationOfRecipient ~ cAnimacyOfRec + (1|Verb), data=centered, fa
 summary(m.c)
 
 # We can add additional predictors just as in the linear model
-m.c = glmer(RealizationOfRecipient ~ cAnimacyOfRec + cLengthOfRecipient + (1|Verb), data=centered, family="binomial")
+m.c = glmer(RealizationOfRecipient ~ cAnimacyOfRec + cLengthOfRecipient + (1|Verb), data=dative, family="binomial")
 summary(m.c)
 
 # To get model predictions
-dative$PredictedRealization = predict(m.c)
+dative$PredictedRealization = predict(m)
 head(dative)
 
 # Let's turn the predictions into probabilities
@@ -76,3 +79,4 @@ table(dative[,c("RealizationOfRecipient","PredictedCatRealization")])
 dative$Prediction = ifelse(dative$RealizationOfRecipient == dative$PredictedCatRealization,"correct","incorrect")
 table(dative$Prediction)
 prop.table(table(dative$Prediction))
+
