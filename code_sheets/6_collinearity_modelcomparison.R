@@ -1,5 +1,5 @@
 # Collinearity & model evaluation
-# created by jdegen on Sep 17, 2016
+# created by jdegen on Jun 1, 2017
 
 setwd("/Users/titlis/cogsci/projects/stanford/projects/LINGUIST245/")
 library(lme4)
