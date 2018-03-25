@@ -1,6 +1,6 @@
 # Methods in Psycholinguistics (LINGUIST 245)
 
-This repository serves to store the experiments, data, analyses, and documentation for experiments (originals and replications) run as part of the class. Each student's project will live in its own project directory.
+This repository serves to store useful information related to the class, including code sheets, experiment templates, stats slides, and information about how to set up and version control your final project directories.
 
 ## Guidelines for creating your project directory
 
@@ -12,7 +12,7 @@ This repository serves to store the experiments, data, analyses, and documentati
 
 	- experiment
 	- data
-	- results
+	- analysis
 	- docs
 
 4. Each of the sub-directories should contain a README.md file with a (few) sentence(s) on what it contains. 
