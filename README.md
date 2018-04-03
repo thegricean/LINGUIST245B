@@ -5,7 +5,7 @@ This repository serves to store useful information related to the class, includi
 ## Project timeline
 
 | By end of week | Step |
-|:--------------:|:----:|
+|:--------------:|:----|
 | 2 | select an experiment to replicate/run |
 | 3 | meet with me to discuss choice |
 | 4 | finish first draft of experiment (general infrastructure, including data recording) |
