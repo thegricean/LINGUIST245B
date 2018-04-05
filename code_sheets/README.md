@@ -3,6 +3,8 @@
 
 ### git/github
 
+We will use `git` and `github` to version control projects.
+
 - Beginner's [git tutorial](https://try.github.io/)
 
 - git command [cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
