@@ -33,13 +33,13 @@ We will use Submiterator to link our experiments to Mechanical Turk, retrieve re
 	- **Make sure to keep `liveHIT` set to `no` while you are testing!**
 	- When calculating payment, try to pay at a rate of $10/hour. Do the experiment pretending you're a real participant to get an estimate of how long it will realistically take.
 4. When you are satisfied with the contents of the `.config` file, navigate to the `mturk` directory in your Terminal and type `submiterator posthit experiment`. If your experiment was successfully loaded into the sandbox, you should see something like this:
-[](successfulhitpost.png)
+![Screenshot](successfulhitpost.png)
 5. Paste the outputted URL in your browser to see your experiment in the Sandbox. Eg, in the above screenshot, the relevant URL is `https://workersandbox.mturk.com/mturk/preview?groupId=3940TVN5B54IN1GB327XPZEC4JOEOP`.
 6. Click through the experiment.
 7. To retrieve your results, type `submiterator getresults experiment` in the Terminal while in the `mturk` folder. If your results were successfully retrieved, you should see something like this:
-[](successfulhitretrieval.png)
+![Screenshot](successfulhitretrieval.png)
 8. To reformat the generated results file `experiment.results`, which contains the information in the one-participant-per-row format, type `submiterator reformat results`. This will create a file `experiment.csv`, which contains the information in the one-datapoint-per-row format. Note: this will only work if you logged responses in a variable `response` in the `log_responses()` function. If the command completes successfully, you should see something like this:
-[](successfulreformat.png)
+![Screenshot](successfulreformat.png)
 9. Load the data into R. Run your visualization/analysis code on the data to make sure you're recording everything you need.
 
 ### Running your experiment on MTurk
