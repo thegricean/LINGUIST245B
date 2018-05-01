@@ -71,6 +71,7 @@ summary(m.1b)$AICtab
 # Case study 2: Use centering to handle collinearity between Length and Frequency
 m = lmer(RT ~ Length * Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
+vif.mer(m)
 
 pairscor.fnc(lexdec[,c("RT","Length","Frequency")])
 
@@ -81,6 +82,12 @@ pairscor.fnc(lexdec[,c("RT","Length","Frequency","cLength","cFrequency")])
 
 m = lmer(RT ~ cLength * cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
+
+m.1 = lmer(RT ~ cLength + cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
+summary(m.1)
+
+m.2 = lmer(RT ~ Length + Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
+summary(m.2)
 
 #######################################
 
