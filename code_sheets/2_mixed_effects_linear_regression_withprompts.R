@@ -1,10 +1,6 @@
 # Mixed effects linear regression
 # Created by jdegen on Sep 16, 2016
-
-#  Set the path to your working directory and load "languageR". Also load the "lme4" package, which contains the "lmer" function for fitting mixed effects linear models.
-setwd("//Users/titlis/cogsci/projects/stanford/projects/LINGUIST245/code_sheets/")
-library(languageR)
-library(lme4)
+# Updated by jdegen on May 1, 2018
 
 # Let's run our first mixed effects linear regression model! We start by running the simplest linear regression model for predicting RTs (only frequency predictor) with by-subjects random intercepts.
 m = lmer(RT ~ Frequency + (1|Subject), data=lexdec, REML=F)
@@ -13,12 +9,11 @@ summary(m)
 # Let's look at the R^2 -- this is much higher compared to the simple linear model! 
 cor(fitted(m),lexdec$RT)^2
 
-# 1. What was the linear model's R-squared? Re-compute it here.
-...
+# 1. What was the simple linear model's R-squared? Re-compute it here.
+
 
 # 2. How would we add random by-item intercepts to the mixed effects model? (What counts as an item?)
-m = lmer(RT ~ Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
-summary(m)
+
 
 # Let's look more closely at the random effects:
 ranef(m)
