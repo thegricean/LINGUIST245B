@@ -36,10 +36,6 @@ summary(m)
 m = lm(RT ~ Frequency + FamilySize, data=lexdec)
 summary(m)
 
-diff = max(lexdec$Frequency) - min(lexdec$Frequency)
-diff*-.035
-max(lexdec$RT) - min(lexdec$RT)
-
 # 6. Extend the model to include a predictor for participants’ native language (English vs other). By default R dummy-codes categorical predictors. It assigns 0 and 1 to the predictors in alphabetical order. If you're not sure how a predictor is coded (or if you want to change the default coding), you can use the `contrasts()` function. What is the reference level for the NativeLanguage predictor?
 m = lm(RT ~ Frequency + FamilySize + NativeLanguage, data=lexdec)
 summary(m)
