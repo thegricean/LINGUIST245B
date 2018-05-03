@@ -2,6 +2,9 @@
 # Created by jdegen on Sep 16, 2016
 # Updated by jdegen on May 1, 2018
 
+library(lme4)
+library(languageR)
+
 # Let's run our first mixed effects linear regression model! We start by running the simplest linear regression model for predicting RTs (only frequency predictor) with by-subjects random intercepts.
 m = lmer(RT ~ Frequency + (1|Subject), data=lexdec, REML=F)
 summary(m)
