@@ -14,7 +14,6 @@ cor(fitted(m),lexdec$RT)^2
 
 # 1. What was the simple linear model's R-squared? Re-compute it here.
 
-
 # 2. How would we add random by-item intercepts to the mixed effects model? (What counts as an item?)
 
 
@@ -59,11 +58,22 @@ summary(m.2)
 anova(m.1,m.2)
 
 # To compute p-values for fixed effects via lmerTest:
+
+# Run the following two commands if you haven't installed the packages:
+#
+# install.packages("lmerTest")
+
 library(lmerTest)
 m.3 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.3)
 
 # Plotting random effects
+
+# Run the following two commands if you haven't installed the packages:
+#
+# install.packages("sjPlot")
+# install.packages("sjmisc")
+
 library(sjPlot)
 library(sjmisc)
 sjp.lmer(m,sort.est = "sort.all",facet.grid=F)
