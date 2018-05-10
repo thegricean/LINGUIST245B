@@ -1,14 +1,13 @@
 # Data wrangling in the R tidyverse
 # Created by jdegen on May 11, 2017
+# Modified by jdegen on May 10, 2018
 
-setwd("/Users/titlis/cogsci/projects/stanford/projects/LINGUIST245/")
-install.packages("tidyverse")
 library(tidyverse)
 
 # Load datasets. R will automatically read the contents of these files into data.frames.
-wide = read.csv("data/lexdec_wide.csv")
+wide = read.csv("../data/lexdec_wide.csv")
 head(wide)
-wordinfo = read.csv("data/wordinfo.csv")
+wordinfo = read.csv("../data/wordinfo.csv")
 head(wordinfo)
 
 # If your data isn't comma-separated, you can use read.table() instead
@@ -23,14 +22,10 @@ head(wi)
 long = wide %>%
   gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
   arrange(Subject)
-head(long)
-long = long %>%
-  arrange(NativeLanguage)
 
 # 1. We just sorted the resulting long format by Subject. Sort it by Word instead.
-long = wide %>%
-  gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
-  arrange(Word)
+
+
 
 # To convert back to wide format
 newwide = long %>%
@@ -38,7 +33,6 @@ newwide = long %>%
 head(newwide)
 
 # We can add word level information to the long format using inner_join() -- see also the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
-wordinfo = rbind(wordinfo,data.frame(Word="bla",Frequency=5,FamilySize=2,Length=3,Class="plant"))
 lexdec = inner_join(long,wordinfo,by=c("Word"))
 head(lexdec)
 nrow(lexdec)
@@ -48,7 +42,8 @@ wordinfo[wordinfo$Word == "almond",]
 lexdec[lexdec$Word == "almond",]
 
 # 2. Convince yourself that the information got correctly added by testing a few more cases.
-...
+
+
 
 # Success! We are ready to run our mixed effects models.
 m = lmer(RT ~ Frequency*NativeLanguage + FamilySize + (1 + Frequency + FamilySize | Subject) + (1 + NativeLanguage | Word), data=lexdec)
@@ -60,27 +55,26 @@ subj_means = lexdec %>%
   summarize(Mean = mean(RT), SD = sd(RT), Max = max(RT))
 
 # 3. Compute RT means by Word instead.
-subj_means = lexdec %>%
-  group_by(Word) %>%
-  summarize(Mean = mean(RT), SD = sd(RT), Max = max(RT))
-View(subj_means)
+
+
 
 # Sometimes we want to save data.frames or R console output to a file. For example, we might want to save our newly created lexdec dataset:
 write.csv(lexdec,file="data/lexdec_long.csv")
 
 # 4. Using the R help, figure out how to suppress the row.names and the quotes in the output and re-write the file.
-write.csv(lexdec,file="data/lexdec_long.csv",row.names=FALSE,quote = F)
+
+
 
 # We can also save the console output to a file (for example, if you've run a particularly time-consuming regression analysis you may want to save the model results). 
 out = capture.output(summary(m))
 out
-cat("My awesome results","","", out, file="data/modeloutput.txt", sep="\n")
+cat("My awesome results","","", out, file="../data/modeloutput.txt", sep="\n")
 
 # If you want to save the model directly for future use:
-save(m,file="data/mymodel.RData")
+save(m,file="../data/mymodel.RData")
 
 # You can later reload the model using load()
-load("data/mymodel.RData")
+load("../data/mymodel.RData")
 
 # 5. Why was "mymodel.RData" a poorly chosen name for the file? Choose a better name.
-save(m,file="data/m.RData")
+save(m,file="../data/m.RData")
