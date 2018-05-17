@@ -55,43 +55,70 @@ It's always good to start out by understanding your response distribution. You *
 table(lexdec$RT)
 ```
 
-But some things are easier to understand by visualization. Here's a histogarm of the response distribution. 
+But some things are easier to understand by visualization. Here's a histogarm of the response distribution. Always add reasonable/informative axis labels.
 
 ```{r}
 ggplot(lexdec, aes(x=RT)) +
-  geom_histogram() 
+  geom_histogram()  +
+  xlab("Log-transformed reaction time") +
+  ylab("Number of cases")
 ```
 
-Always add reasonable/informative axis labels.
+Plot two overlaid histograms for each native language group separately.
+ 
 ```{r}
+ggplot(lexdec, aes(x=RT,fill=NativeLanguage)) +
+  geom_histogram(position="identity",alpha=.5) +
+  xlab("Log-transformed reaction time") +
+  ylab("Number of cases")
+```
 
+Plot density functions instead.
+
+```{r}
+ggplot(lexdec, aes(x=RT,fill=NativeLanguage)) +
+  geom_density(alpha=.5) +
+  xlab("Log-transformed reaction time") +
+  ylab("Number of cases")
 ```
 
 To save a plot, use ggsave().
 ```{r}
-ggsave(file="graphs/rt_histogram.png",width=5,height=4)
+ggsave(file="graphs/rt_histogram.pdf",width=5,height=4)
 ```
 
-Plot response time as a function of frequency.
+Plot response time as a function of frequency with an overlaid linear smoother.
 ```{r}
-
+ggplot(lexdec, aes(x=Frequency,y=RT)) +
+  geom_point() +
+  geom_smooth(method="lm")
 ```
 
+Plot the frequency effect separately for each subject by using facets.
 
-
-Plot RT as a function of frequency, by native language.
 ```{r}
-
+ggplot(lexdec, aes(x=Frequency,y=RT)) +
+  geom_point() +
+  geom_smooth(method="lm") + 
+  facet_wrap(~Subject)
 ```
 
-
-
-Manually adjust colors with use of scales. All visual details (colors, shapes, line types, coordinate systems, etc) are controlled via scales.
+Plot the frequency effect separately for each native language background, and modify the colors to use the Wes Anderson palette :)
 ```{r}
-
+library(wesanderson)
+mean_rt = mean(lexdec$RT)
+ggplot(lexdec, aes(x=Frequency,y=RT,color=NativeLanguage)) +
+  geom_smooth(method="lm") +
+  geom_point() +
+  # geom_hline(yintercept=mean_rt,linetype="dashed",color="red") +
+  ylab("Log-transformed reaction time") +
+  xlab("Log-transformed CELEX lemma frequency") +
+  scale_color_manual(name="Native language",values=wes_palette("Zissou1")[2:3]) +
+  theme(legend.position="bottom")
 ```
 
-Plot mean untransformed RT by native language as barplot with error bars.
+
+Plot mean untransformed RT by native language as barplot with error bars. Overlay individual subjects' data points.
 ```{r}
 lexdec$rawRT = exp(lexdec$RT)
 agr = lexdec %>%
@@ -99,24 +126,32 @@ agr = lexdec %>%
   summarize(MeanRT = mean(rawRT), CI.Low = ci.low(rawRT), CI.High = ci.high(rawRT)) %>%
   mutate(YMin = MeanRT - CI.Low, YMax = MeanRT + CI.High)
 
+ggplot(agr, aes(x=NativeLanguage,y=MeanRT)) +
+  geom_bar(stat="identity",color="black",fill="gray60") +
+  geom_jitter(data=lexdec,aes(y=rawRT),alpha=.2,color="lightblue") +
+  geom_errorbar(aes(ymin=YMin,ymax=YMax),width=.25) 
 
 ```
 
-Add individual data points to barplot to visualize participant variability.
+Visualize as violin plots instead.
 ```{r}
-
+means = lexdec %>%
+  group_by(NativeLanguage) %>%
+  summarize(Mean=mean(rawRT))
+ggplot(lexdec, aes(NativeLanguage,y=rawRT,fill=NativeLanguage)) +
+  geom_violin() +
+  geom_point(data=means,aes(y=Mean))
 ```
-Add by-participant means to barplot to visualize variability.
+
+...or as boxplots.
+
 ```{r}
-
+ggplot(lexdec, aes(NativeLanguage,y=rawRT)) +
+  geom_boxplot()
 ```
 
-Plot log RT as a function of frequency by subject (individual variability in sensitivity to frequency). Useful: facets.   
-```{r}
 
-```
-
-Scatterplot with an added line. Empirical observations against model predictions.
+If you want to plot empirical observations against model predictions:
 ```{r}
 m = lmer(RT ~ Frequency*NativeLanguage + FamilySize + (1+Frequency+FamilySize|Subject) + (1+NativeLanguage|Word),data=lexdec)
 lexdec$PredictedRT = fitted(m)
