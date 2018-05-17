@@ -1,13 +1,15 @@
 ---
 title: "Using ggplot2 to visualize data"
 author: "jdegen"
-date: "May 18, 2017"
+date: "May 17, 2018"
 output: html_document
 ---
 
 ## What is ggplot2?
 
 ggplot2 is a language created by Hadley Wickham, based on “The Grammar of Graphics” by Wilkinson et al (2005), for describing and creating plots (graphics). Plots can be built up iteratively and updated later.
+
+[Here](http://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) is a useful "cheat sheet" overview of common ggplot functions. 
 
 ## The grammar of graphics
 
@@ -35,9 +37,7 @@ A mapping from **data** to **aesthetic attributes** (e.g., color, shape, size) o
 - **facet**ing specification describes how to break data into subsets andreturn an individual plot for each subset (like conditioning)
 
 ```{r}
-setwd("/Users/titlis/cogsci/projects/stanford/projects/LINGUIST245/code_sheets/")
 source("helpers.R")
-library(ggplot2)
 library(languageR)
 library(lme4)
 library(tidyverse)
@@ -58,30 +58,63 @@ table(lexdec$RT)
 But some things are easier to understand by visualization. Here's a histogarm of the response distribution. 
 
 ```{r}
-p = ggplot(lexdec, aes(x=RT)) +
+ggplot(lexdec, aes(x=RT)) +
   geom_histogram() 
 ```
-Always add reasonable axis labels.
+
+Always add reasonable/informative axis labels.
 ```{r}
-ggplot(lexdec, aes(x=RT)) +
-  geom_histogram(binwidth=.01) +
-  xlab("Log-transformed lexical decision times") +
-  ylab("Number of cases")
+
 ```
 
-To save a plot, use ggsave
+To save a plot, use ggsave().
 ```{r}
-ggsave(file="../graphs/rt_histogram.png",width=5,height=4)
+ggsave(file="graphs/rt_histogram.png",width=5,height=4)
 ```
 
 Plot response time as a function of frequency.
 ```{r}
-ggplot(lexdec, aes(x=Frequency,y=RT)) +
-  geom_point() +
-  geom_smooth(method="lm")
+
 ```
 
 
+
+Plot RT as a function of frequency, by native language.
+```{r}
+
+```
+
+
+
+Manually adjust colors with use of scales. All visual details (colors, shapes, line types, coordinate systems, etc) are controlled via scales.
+```{r}
+
+```
+
+Plot mean untransformed RT by native language as barplot with error bars.
+```{r}
+lexdec$rawRT = exp(lexdec$RT)
+agr = lexdec %>%
+  group_by(NativeLanguage) %>%
+  summarize(MeanRT = mean(rawRT), CI.Low = ci.low(rawRT), CI.High = ci.high(rawRT)) %>%
+  mutate(YMin = MeanRT - CI.Low, YMax = MeanRT + CI.High)
+
+
+```
+
+Add individual data points to barplot to visualize participant variability.
+```{r}
+
+```
+Add by-participant means to barplot to visualize variability.
+```{r}
+
+```
+
+Plot log RT as a function of frequency by subject (individual variability in sensitivity to frequency). Useful: facets.   
+```{r}
+
+```
 
 Scatterplot with an added line. Empirical observations against model predictions.
 ```{r}
@@ -93,107 +126,3 @@ ggplot(lexdec, aes(x=PredictedRT,y=RT)) +
   xlab("Model predicted log response times") +
   ylab("Empirical log response times")
 ```
-
-Add a perfect correlation line and more intuitive axis labels.
-```{r}
-ggplot(lexdec, aes(x=PredictedRT,y=RT)) +
-  geom_point(size=.5) + 
-  geom_abline(intercept=6,slope=.1,color="pink") +
-  xlab("Model predicted log response times") +
-  ylab("Empirical log response times")
-```
-
-Scatterplot with a linear smoother. RT as a function of frequency.
-```{r}
-ggplot(lexdec, aes(x=Frequency,y=RT)) +
-  geom_point() +
-  geom_smooth(method="lm") +
-  xlab("Log-transformed lemma frequency") +
-  ylab("Log-transformed response time")
-```
-
-Scatterplot with a linear smoother plotted separately for each level of a variable. RT as a function of frequency, by native language.
-```{r}
-ggplot(lexdec, aes(x=Frequency,y=RT,color=NativeLanguage)) +
-  geom_point() +
-  geom_smooth(method="lm") +
-  xlab("Log-transformed lemma frequency") +
-  ylab("Log-transformed response time") +
-  theme(panel.grid = element_blank())
-```
-
-Manually adjust colors.
-```{r}
-ggplot(lexdec, aes(x=Frequency,y=RT,color=NativeLanguage)) +
-  geom_point() +
-  geom_smooth(method="lm") +
-  scale_color_manual(values=c(259,84)) +
-  xlab("Log-transformed lemma frequency") +
-  ylab("Log-transformed response time")
-```
-
-Barplot with error bars and overlaid jittered points using a second dataset. Mean untransformed RT by native language and individual RTs.
-```{r}
-lexdec$rawRT = exp(lexdec$RT)
-agr = lexdec %>%
-  group_by(NativeLanguage) %>%
-  summarise(MeanRT = mean(rawRT), CI.Low = ci.low(rawRT), CI.High = ci.high(rawRT)) %>%
-  mutate(YMin = MeanRT - CI.Low, YMax = MeanRT + CI.High)
-
-ggplot(agr, aes(x=NativeLanguage,y=MeanRT)) +
-  geom_bar(stat="identity",fill="gray80",color="black") +
-  geom_errorbar(aes(ymin=YMin,ymax=YMax), width=.25) +
-  xlab("Participants' native language") +
-  ylab("Mean response time in ms")
-```
-
-Add individual data points to barplot to visualize variability.
-```{r}
-ggplot(agr, aes(x=NativeLanguage,y=MeanRT)) +
-  geom_bar(stat="identity",fill="gray80",color="black") +
-  geom_jitter(data=lexdec,aes(y=rawRT),alpha=.4,color="lightblue") +
-  geom_errorbar(aes(ymin=YMin,ymax=YMax), width=.25) +
-  xlab("Participants' native language") +
-  ylab("Mean response time in ms")
-```
-Add by-participant means to barplot to visualize variability.
-```{r}
-agr_subj = lexdec %>%
-  group_by(NativeLanguage,Subject) %>%
-  summarise(MeanRT = mean(rawRT), CI.Low = ci.low(rawRT), CI.High = ci.high(rawRT)) %>%
-  mutate(YMin = MeanRT - CI.Low, YMax = MeanRT + CI.High)
-
-ggplot(agr, aes(x=NativeLanguage,y=MeanRT)) +
-  geom_bar(stat="identity",fill="gray80",color="black") +
-  geom_point(data=agr_subj,aes(y=MeanRT),alpha=.4,color="black") +
-  geom_text(data=data.frame(Ast="***"),y=800,x=1.5,color="orange",size=15,aes(label=Ast)) +
-  geom_errorbar(aes(ymin=YMin,ymax=YMax), width=.25) +
-  xlab("Participants' native language") +
-  ylab("Mean response time in ms")
-```
-
-Violin plot.
-```{r}
-ggplot(lexdec, aes(x=NativeLanguage,y=rawRT)) +
-  geom_violin() +
-  geom_point(data=agr,aes(y=MeanRT))
-```
-Box-plot with overlaid violin plot and giant orange mean. Crazy!
-```{r}
-ggplot(lexdec, aes(x=NativeLanguage,y=rawRT)) +
-  geom_violin() +
-  geom_boxplot(alpha=.4,notch=T) +
-  geom_point(data=agr,aes(y=MeanRT),color="orange",size=10)
-  
-```
-
-Faceted scatterplot. Log RT as a function of frequency by subject (individual variability in sensitivity to frequency).   
-```{r}
-ggplot(lexdec, aes(x=Frequency,y=RT)) +
-  geom_point() +
-  geom_smooth(method="lm") +
-  xlab("Log-transformed lemma frequency") +
-  ylab("Log-transformed response time") +
-  facet_grid(Subject~NativeLanguage) 
-```
-

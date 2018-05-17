@@ -1,8 +1,6 @@
 # Mixed effects linear regression
 # Created by jdegen on Sep 16, 2016
 
-#  Set the path to your working directory and load "languageR". Also load the "lme4" package, which contains the "lmer" function for fitting mixed effects linear models.
-setwd("/Users/titlis/cogsci/teaching/_2016/mem_tutorial/")
 library(languageR)
 library(lme4)
 
