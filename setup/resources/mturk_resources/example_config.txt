@@ -1,0 +1,19 @@
+
+{
+"rewriteProperties":"yes",
+"liveHIT":"no",
+"title":"Language study",
+"description":"A 5-minute study where you respond to sentences.",
+"nameofexperimentfiles":"experiment",
+"experimentURL":"https://bla",
+"keywords":"language experiment study communication stanford fun cognitive science",
+"USonly?":"yes",
+"minPercentPreviousHITsApproved":"95",
+"frameheight":"650",
+"reward":"1.00",
+"numberofassignments":"5",
+"assignmentduration":"1800",
+"hitlifetime":"2592000",
+"autoapprovaldelay":"60000",
+"conditions":"cond"
+}
