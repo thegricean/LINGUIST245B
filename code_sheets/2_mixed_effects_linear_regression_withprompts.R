@@ -9,6 +9,13 @@ library(languageR)
 m = lmer(RT ~ Frequency + (1|Subject), data=lexdec, REML=F)
 summary(m)
 
+m = lmer(RT ~ Frequency*NativeLanguage + (1+Frequency|Subject) + (1+NativeLanguage|Word), data=lexdec, REML=F)
+summary(m)
+ranef(m)
+
+m.simple = lmer(RT ~ Frequency*NativeLanguage-Frequency + (1|Subject), data=lexdec, REML=F)
+summary(m.simple)
+
 # Let's look at the R^2 -- this is much higher compared to the simple linear model! 
 cor(fitted(m),lexdec$RT)^2
 

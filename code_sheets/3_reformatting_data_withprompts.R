@@ -22,7 +22,7 @@ head(wi)
 long = wide %>%
   gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
   arrange(Subject)
-
+View(long)
 # 1. We just sorted the resulting long format by Subject. Sort it by Word instead.
 
 
@@ -31,6 +31,10 @@ long = wide %>%
 newwide = long %>%
   spread(Word,RT)
 head(newwide)
+
+tmp = long %>%
+  left_join(wordinfo,by=c("Word"))
+
 
 # We can add word level information to the long format using inner_join() -- see also the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
 lexdec = inner_join(long,wordinfo,by=c("Word"))
