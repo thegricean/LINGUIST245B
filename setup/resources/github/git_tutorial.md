@@ -31,7 +31,7 @@ ls
 
 If you do not have permission to edit a repo, then you will not be able to push your changes to GitHub. For your project, you'll want to have a separate folder, parallel to LINGUIST245B. But you probably don't want to start coding your entire experiment from scratch, so we're providing an experiment template and a project directory structure that works for organizing files. You'll want to **fork** the example project repo we're providing. This means you are making your own copy on GitHub. This allows you to maintain any further changes separately. (And if you want the owner of the original repo to integrate some of your changes, you can submit a pull request, but we will not need this for the course.)
 
-Go to https://github.com/thegricean/experiment_template
+Go to https://github.com/thegricean/my_project
 and click on the "Fork" button on the top right corner. This will generate a copy of the repo under your own account.
 
 Go to the new repo under your own account, go to "Settings," change the name to whatever you want your project to be named (e.g., "fine_replication"), and click "Rename".
