@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <title>Language Learning Experiment</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="../_shared/js/exp-V2.js"></script>
+    <script src="../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../_shared/js/mmturkey.js "></script>
+    <script src="../_shared/js/browserCheck.js"></script>
+    <script src="../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/stims.js"></script>
+    <script type="text/javascript">
+      var CONDITION = 1;
+    </script>
+    <script src="js/template.js"></script>
+
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <!-- <img src="../_shared/images/cocologo.png" alt="Stanford CoCoLab" id="cocologo"></img> -->
+    <p id="cocolab">Stanford Linguistics</p>
+    <p id="instruct-text">
+      In this experiment, you will read 120 sentences word-by-word and for each sentence, answer a short question. Please pay attention, thanks!</p>
+    <input id="start_button" type="button" class="button" value="Start Experiment">
+  </div>
+
+
+  <div class="slide" id="instructions">
+
+		<h3>Instructions</h3>
+    <p>On the following pages, you will always see a phrase masked with dashes (-). To read the sentence, please press the space bar which will reveal the next word. 
+			Once you've read the sentence, please answer the yes/no question that will appear on the screen.</p>
+		
+		
+		<p><strong>Important</strong>: Please try to complete the experiment in one session without any interruptions. It should take at most 30mins.</p>
+		
+    <input type="button" class="button" value="Continue" onclick="exp.go();">
+		
+  </div>
+
+  <div class="slide" id="trial">
+    
+		<p>Please read the following sentence by pressing the space bar to reveal each word.</p>
+		<p style="font-family:monospace; margin-top:145px;font-size:18px;" id="stimulus-sentence"></p>
+		
+    <div id="comprehension-question">
+			
+			<p id="comprehension-question-q" class="question"></p>
+      <input type="button" value="Yes" id="test-response-1" class="response-buttons button">
+      <input type="button" value="No" id="test-response-2" class="response-buttons button">
+		</div>
+		
+		
+  </div>
+
+  <div class="slide" id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+    
+
+      <p>What's your name?</p>
+      <input type="text" id="name" />
+
+      <p>How old are you?</p>
+      <input type="text" id="age" />
+
+      <p>Please select your gender</p>
+      <select id="gender" name="gender">
+        <label><option value="f">female</option></label>
+        <label><option value="m" >male</option></label>
+        <label><option value="o">non-binary</option></label>
+      </select>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>How tired are you right now?</p>
+      <select id="tirednesslvl" name="tirednesslvl">
+        <label><option value="1">well rested</option></label>
+        <label><option value="2" >a little tired</option></label>
+        <label><option value="3" >I almost fell asleep during the experiment</option></label>
+      </select><br />
+
+      <br/>      <br/>
+
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big" id="thanks-text">Thanks for your time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

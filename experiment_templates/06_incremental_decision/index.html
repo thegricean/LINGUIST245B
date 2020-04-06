@@ -1,0 +1,204 @@
+<html>
+
+<head>
+	<title>Naturalness Rating</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="shared/js/jquery-1.11.1.min.js"></script>
+    <script src="shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="shared/js/exp-V2.js"></script>
+    <script src="shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="shared/js/mmturkey.js "></script>
+    <script src="shared/js/browserCheck.js"></script>
+    <script src="shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+	<script src="js/index.js"></script>
+	
+	<!-- stimuli file -->
+	<script src="js/stimuli.js"></script>
+
+	<script type="text/JavaScript">
+    	$(document).ready(function(){
+	   	var ut_id = "f76f66fc8ddb491c884c44880f1764ba";
+	   	if (UTWorkerLimitReached(ut_id)) {
+	    	$(".slide").hide();
+	    	$("body").html("You have already completed the maximum number of HITs allowed by this requester. Please click 'Return HIT' to avoid any impact on your approval rating.");
+		}});
+    </script>
+
+</head>
+
+<body onload="init();">
+	<noscript>This task requires JavaScript.</noscript>
+	
+	<div class="slide" id="i0" >
+		<img src="images/alps_lab.png" alt="Alps Lab"  style="width:300">
+   		<p id="instruct-text">In this experiment, you will see several scenes and you will be asked to play a guessing game. The HIT should take about 8 minutes. Please pay attention! </p>
+   		<button id="start_button" type="button">Start Experiment</button>
+    	<br>
+		<p id="instruct-text" align="left"><i><small><small><strong>LEGAL INFORMATION</strong>:<br>We invite you to participate in a research study on language production and comprehension.<br>Your experimenter will ask you to do a linguistic task such as reading sentences or words, naming pictures or describing scenes, making up sentences of your own, or participating in a simple language game.<br>You will be paid for your participation at the posted rate.<br><br>There are no risks or benefits of any kind involved in this study.<br>If you have read this form and have decided to participate in this experiment, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled. You have the right to refuse to do particular tasks. Your individual privacy will be maintained in all published and written data resulting from the study.<br>You may print this form for your records.<br>CONTACT INFORMATION:<br>If you have any questions, concerns or complaints about this research study, its procedures, risks and benefits, you should contact the Protocol Director Meghan Sumner at <br>(650)-725-9336<br>If you are not satisfied with how this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a participant, please contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the research team at (650)-723-2480 or toll free at 1-866-680-2906. You can also write to the Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor, Palo Alto, CA 94306 USA.<br>If you agree to participate, please proceed to the study tasks.<br>
+		</small></small></i></p>
+    </div>
+		
+	<!--Instruction slide-->
+	<div class="slide" id="instructions">
+  		<h3>Instructions</h3>
+  		<p> You will see a scene with a partial description of it. It is your task to guess which of the children the description is referring to.</p>
+		<img src="images/instruction_image.png" alt="instructions"  style="width:400">
+		<br>
+		<p>To make a guess, click on one of the children. Whenever you make a guess by clicking, more words of the description will appear.</p>
+		<!-- <p> You will get a bonus* for correct guesses: <br>
+		3.5 cents for correctly guessing on the first, second, and third try. <br>
+		3 cents for correctly guessing only on the second and third try. <br>
+		2 cents for correctly guessing only on the third try. <br>
+		</p> -->
+		<p>Note: sometimes it will be impossible to determine which child the description is referring to until the second or third try and you will have to make a random guess. Good luck!</p>
+		<button onclick="_s.button()">Continue</button>
+		<!-- <p><small>*We reserve the right to withhold the bonus for participants who randomly click through the experiment. If you faithfully complete this HIT, you will get a bonus of at least $1.75!</small></p> -->
+	</div>
+
+	<div class="slide" id="practice">
+		<p class="sentence"></p>
+		<p class="image"></p>
+
+		<button class="second_slide" onclick="_s.second_slide()">Continue</button>
+
+		<div class="grid-container">
+			<div class="loc1 loc" data-loc="AOI1"></div>
+			<div class="loc2 loc" data-loc="AOI2"></div>
+			<div class="loc3 loc" data-loc="AOI3"></div>  
+			<div class="loc4 loc" data-loc="AOI4"></div>
+			<div class="loc5 loc" data-loc="AOI5"></div>
+			<div class="loc6 loc" data-loc="AOI6"></div>
+			<div class="loc7 loc" data-loc="AOI7"></div>
+			<div class="loc8 loc" data-loc="AOI8"></div>
+			<div class="loc9 loc" data-loc="AOI9"></div>
+			<div class="loc10 loc" data-loc="AOI10"></div>      
+		</div>
+
+		<div class="err">Please click on one of the children.</div>
+
+		<button class="grid_button" onclick="_s.grid()">Continue</button>
+		
+		<!-- <button onclick="_s.button()">Continue</button> -->
+  </div>
+	
+ 	<div class="slide" id="afterpractice">
+		<h3>Great, now we can start the real experiment.</h3>
+		<!-- <p>Bla bla bla</p> -->
+		<button onclick="_s.button()">Continue</button>
+	</div>
+
+	<!--Experimental trial slide-->
+  	<div class="slide" id="trial">
+		<p class="instruction"></p>
+
+		<div class="grid-container">
+			<div class="loc1 loc" data-loc="AOI1"></div>
+			<div class="loc2 loc" data-loc="AOI2"></div>
+			<div class="loc3 loc" data-loc="AOI3"></div>  
+			<div class="loc4 loc" data-loc="AOI4"></div>
+			<div class="loc5"></div>
+			<div class="loc6"></div>
+			<div class="loc7 loc" data-loc="AOI7"></div>
+			<div class="loc8 loc" data-loc="AOI8"></div>
+			<div class="loc9 loc" data-loc="AOI9"></div>
+			<div class="loc10 loc" data-loc="AOI10"></div>      
+		</div>
+				   
+    	<!-- <button onclick="_s.button()">Continue</button> -->
+    	<!-- <div class="err">Please adjust the slider before continuing.</div> -->
+  	</div>
+
+
+	<div class="slide"  id="subj_info">
+	    <div class="long_form">
+	      <div class="subj_info_title">Additional information</div>
+	      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+	      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+	      <label><input type="radio"  name="assess" value="No"/>No</label>
+	      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+	      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+	      <p>Were there any problems or bugs in the experiment?</p>
+	      <textarea id="problems" rows="2" cols="50"></textarea>
+
+	      <p>What do you think is a fair price for the work you did?</p>
+	      <textarea id="fairprice" rows="1" cols="10"></textarea>
+
+	      <p>Gender:
+	        <select id="gender">
+	          <label><option value=""/></label>
+	          <label><option value="Male"/>Male</label>
+	          <label><option value="Female"/>Female</label>
+	          <label><option value="Other"/>Other</label>
+	        </select>
+	      </p>
+
+	      <p>Age: <input type="text" id="age"/></p>
+
+	      <p>Level Of Education:
+	        <select id="education">
+	          <label><option value="-1"/></label>
+	          <label><option value="0"/>Some High School</label>
+	          <label><option value="1"/>Graduated High School</label>
+	          <label><option value="2"/>Some College</label>
+	          <label><option value="3"/>Graduated College</label>
+	          <label><option value="4"/>Hold a higher degree</label>
+	        </select>
+	      </p>
+
+	      <p>Native Language: <input type="text" id="language"/></p>
+	      <label>(the language(s) spoken at home when you were a child)</label>
+
+	      <p>Did you enjoy the hit?</p>
+	      <select id="enjoyment">
+	        <label><option value="-1"></option></label>
+	        <label><option value="0">Worse than the Average HIT</option></label>
+	        <label><option value="1" >An Average HIT</option></label>
+	        <label><option value="2">Better than average HIT</option></label>
+	      </select>
+
+	      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+	      <textarea id="comments" rows="3" cols="50"></textarea>
+	      <br/>
+	      <button onclick="_s.submit()">Submit</button>
+	    </div>
+	</div>
+
+
+	<div id="thanks" class="slide js" >
+	    <p  class="big">Thanks for your Time!</p>
+	</div>
+
+
+  	<div class="progress">
+    	<span>Progress:</span>
+    	<div class="bar-wrapper">
+      	<div class="bar" width="0%">
+      	</div>
+    	</div>
+  	</div>
+
+</body>
+</html>
