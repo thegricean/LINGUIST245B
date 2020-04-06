@@ -1,31 +1,18 @@
-# Getting started instructions for Linguist 245B (Spr 2019)
-We use various tools to run web-based experiments on Amazon Mechanical Turk. Follow the steps below to set up the pipeline.
+# Software installation for Linguist245B (Spr 2020)
+We use some tools to run our web-based experiments on Amazon Mechanical Turk. Follow the steps below to set up the pipeline.
 
-## Git & GitHub
-Git is a version-control system and GitHub is a platform to host your projects.
+## Preparation
+1. Get CITI certification by completing the [CITI Tutorial](https://about.citiprogram.org/en/homepage/).
 
-1. [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You can read the rest of the linked tutorial to learn more about git.
-2. [First time Git setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup): The main thing is to configure `user.name` and `user.email`
-3. [Sign up for a GitHub account](https://github.com/)
-
-## Preparation  
-
-1.  We will not directly program in Python, but some of the tools we use depend on it, so make sure you have installed [Python 3](https://www.python.org/downloads/).
+2.  We will not directly program in Python, but some of the tools we use depend on it, so make sure you have installed [Python 3](https://www.python.org/downloads/).
 	
 	To test if the right version of Python is installed: go to Terminal, type `python3`. It should open an interactive window, type `exit()` to close the interpreter. Now see if your default Python command is Python2 or Python3 by typing `python -V`. If your default Python command is python2, make sure to run `pip3` instead of pip in the next step.
 
-2. Install the `boto3` and the `xmltodict` packages.
+3. Install the `boto3` and the `xmltodict` packages.
  
 ```
 pip install boto3
 pip install xmltodict
-```
-
-3. In your Bash profile `open ~/.bash_profile` on most Macs), add the following two environment variables with your MTurk access key and MTurk secret:
-
-```
-export MTURK_ACCESS_KEY=<YOUR MTURK ACCESS KEY>
-export MTURK_SECRET=<YOUR MTURK SECRET>
 ```
 
 ## Amazon MTurk Setup
@@ -43,9 +30,20 @@ Click on `Get started wih IAM Users`.
 Click on `Add User`.
 6. Set up a user name and check `programmatic access`, and click `Next:Permissions`
 7. Create a new group (e.g., name it `MTurk`), and check `AdministratorAccess` (Under `Policy name`)
-8. Review and finish, in the end you should see a created user with an Access key ID and a
-Secret access key (click `show`). Save them in a safe place. (**Important: Treat them as any other account numbers and passwords. Do NOT save them in a GitHub repo or anywhere publicly accessible!!!**)
+8. Review and finish. In the end you should see a created user with an access key id and a secret access key (click `show`). Save them in a safe place. (**Important: Treat them as any other account numbers and passwords. Do NOT save them in a GitHub repo or anywhere publicly accessible!!!**)
+9. Go to your bash profile (from Terminal: `open ~/.bash_profile` on most Macs), add the following two environment variables with your MTurk access key id and MTurk secret access key:
 
+```
+export MTURK_ACCESS_KEY=<YOUR MTURK ACCESS KEY>
+export MTURK_SECRET=<YOUR MTURK SECRET>
+```
+
+## Git & GitHub
+Git is a version-control system and GitHub is a platform to host your projects.
+
+1. [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You can read the rest of the linked tutorial to learn more about git.
+2. [First time Git setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup): The main thing is to configure `user.name` and `user.email`
+3. [Sign up for a GitHub account](https://github.com/)
 
 ### Experiment Template
 
@@ -136,14 +134,13 @@ Remember to change the line `var ut_id = "<UNIQUE_TURKER_ID>"` to what you got i
 ```
 (Make sure that this actually the right path to `uniqueturker.js` as you might have put or called things differently, e.g., you might have a `_shared/` folder instead.)
 4. Now you should be all set, but **make sure to test everything in the sandbox before you post the real HITs**!
-5. As long as you use the same Unique identifier, nobody can do the experiment again. If you are starting a completely different experiment, just go get another Unique identifier (note that you must click on `Get Script` for the id to take effect).
+5. As long as you use the same Unique identifier, nobody can do the experiment again. If you are starting a completely different experiment, just get another Unique identifier (note that you must click on `Get Script` for the id to take effect).
 
 
 ## Install R & RStudio
 
 R is a programming language widely used for statistical computing.
-RStudio is a powerful IDE (Integrated Development Environment) we will be working with
-in this course.
+RStudio is a powerful IDE (Integrated Development Environment) we will be working with in this course.
 
 1. [Install R](https://cran.cnr.berkeley.edu/)
 2. [Install RStudio](https://www.rstudio.com/products/rstudio/download/)
@@ -153,10 +150,6 @@ in this course.
 `library(tidyverse)`  
 **(Note that there are NO quotes when you load packages)**  
 If you see a list of attached packages (including `ggplot2`, `dplyr` etc) then everything is good. (Don't worry about the conflicts printed afterwards.)
-
-## CITI certification
-
-At some point before you run your expeirment, get CITI certification by completing the [CITI Tutorial](https://about.citiprogram.org/en/homepage/). This certifies that you are equipped to deal with human study participants.
 
 # YOU ARE DONE WITH THE SET-UP!!!
 
