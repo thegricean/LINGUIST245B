@@ -25,15 +25,18 @@ function make_slides(f) {
       this.stim = stim; // store this information in the slide so you can record it later
       $(".prompt").html(stim.sentence);
 
-      this.init_sliders();
-      exp.sliderPost = null; //erase current slider value
+      $('input[name="natural"]').prop("checked", false);
+
+      // this.init_sliders();
+      // exp.sliderPost = null; //erase current slider value
     },
 
     button : function() {
-      if (exp.sliderPost == null) {
+      exp.response = $('input[name="natural"]:checked').val();
+      if (exp.response == null) {
         $(".err").show();
       } else {
-      this.log_responses();
+        this.log_responses();
 
       /* use _stream.apply(this); if and only if there is
       "present" data. (and only *after* responses are logged) */
@@ -41,17 +44,19 @@ function make_slides(f) {
       }
     },
 
-    init_sliders : function() {
-      utils.make_slider("#single_slider", function(event, ui) {
-        exp.sliderPost = ui.value;
-      });
-    },
+    // init_sliders : function() {
+    //   utils.make_slider("#single_slider", function(event, ui) {
+    //     exp.sliderPost = ui.value;
+    //   });
+    // },
 
     log_responses : function() {
     exp.data_trials.push({
-        "slide_number": exp.phase,
+        "slide_number" : exp.phase,
+        "item" : this.stim.item,
+        "condition" : this.stim.condition,
         "stim" : this.stim.sentence,
-        "response" : exp.sliderPost
+        "response" : exp.response
     });
 
     }
@@ -98,11 +103,19 @@ function init() {
   exp.trials = [];
   exp.catch_trials = [];
 
-  //exp.condition = _.sample(["condition1", "condition2"]);
+  exp.condition = _.sample(["ambiguous", "unambiguous"]);
+  console.log(exp.condition);
 
-  exp.stims =  [    
-    {sentence: "The horse raced past the barn fell."}, 
+  var items =  [    
+    {item: "horse", condition: "ambiguous", sentence: "The horse raced past the barn fell."},
+    {item: "horse", condition: "unambiguous", sentence: "The horce that raced past the barn fell."},
+    {item: "food", condition: "ambiguous", sentence: "When Fred eats food gets thrown."},
+    {item: "food", condition: "unambiguous", sentence: "When Fred eats, food gets thrown."}
   ];
+
+
+
+  exp.stims = _.shuffle(items);
 
   exp.system = {
       Browser : BrowserDetect.browser,
