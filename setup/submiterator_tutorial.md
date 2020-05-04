@@ -56,7 +56,7 @@ We use a tool called supersubmiterator to post experiments to Amazon Mechanical 
 	- Install `boto3` and `xmltodict` packages by typing
 	
 	```
-	pip install boto3 key
+	pip install boto3
 	pip install xmltodict
 	```
 	
