@@ -91,13 +91,13 @@ We use a tool called supersubmiterator to post experiments to Amazon Mechanical 
     
     <img src="img/config_file.png" width="400"/>
 
-5. Cd into `my_project/experiments/01_experiment/mturk` from terminal and type `python supersubmiterator.py posthit example`
+5. Cd into `my_project/experiments/01_experiment/mturk` from terminal and type `python3 supersubmiterator.py posthit example` (or `python supersubmiterator.py posthit example` depending on which version of python you have)
 
     <img src="img/sandbox_posthit.png" width="400"/>
 
 6. Paste the outputted URL in your browser and complete the experiment. Time yourself to get an estimate for long the experiment takes.
 
-7. When you're done, type `python supersubmiterator.py getresults example` in terminal while in the `mturk` folder.
+7. When you're done, type `python3 supersubmiterator.py getresults example` in terminal while in the `mturk` folder.
  
     <img src="img/sandbox_getresults.png" width="400"/>
 
@@ -105,13 +105,13 @@ We use a tool called supersubmiterator to post experiments to Amazon Mechanical 
 
 9. When you’re absolutely certain that your experiment runs and that you’re recording all the information you need for your analyses, load sufficient funds onto your MTurk requester account (remember there’s a 20% amazon fee). Open `example.config` and change `liveHIT` to `yes`. Make sure `numberofassignment` is set to the total number of participants you want to run.
 
-10. In terminal, from your `mturk` folder type `python supersubmiterator.py posthit example`.
+10. In terminal, from your `mturk` folder type `python3 supersubmiterator.py posthit example`.
 
 11. Open <https://manage-hits-individually.s3.amazonaws.com/v4.0/index.html#/credentials> in your browser and put in your MTurk access key and MTurk secret key and select `Production`. You can see how many people completed your experiment and kill your HIT from this link.
     
     <img src="img/manage_hit.png" width="400"/>
 
-9. When all participants completed your experiment, run the getresults command (`python supersubmiterator.py getresults example`).
+9. When all participants completed your experiment, run the getresults command (`python3 supersubmiterator.py getresults example`).
 
 10. Copy and paste the `example-subject_information.csv` and `example-trials.csv` files in `my_project/analysis/01_experiment/data` because you want to be able to push these files to GitHub. 
 
