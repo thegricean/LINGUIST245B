@@ -1,27 +1,25 @@
 # Mixed effects linear regression
 # Created by jdegen on Sep 16, 2016
-# Updated by jdegen on May 1, 2018
+# Updated by jdegen on May 7, 2020
 
-library(lme4)
 library(languageR)
+library(lme4)
+library(MuMIn)
 
 # Let's run our first mixed effects linear regression model! We start by running the simplest linear regression model for predicting RTs (only frequency predictor) with by-subjects random intercepts.
 m = lmer(RT ~ Frequency + (1|Subject), data=lexdec, REML=F)
 summary(m)
 
-m = lmer(RT ~ Frequency*NativeLanguage + (1+Frequency|Subject) + (1+NativeLanguage|Word), data=lexdec, REML=F)
-summary(m)
-ranef(m)
+# marginal R^2 (variance explained by fixed effects): .05
+# conditional R^2 (variance explained by fixed and random effects jointly): .45
+r.squaredGLMM(m)
 
-m.simple = lmer(RT ~ Frequency*NativeLanguage-Frequency + (1|Subject), data=lexdec, REML=F)
-summary(m.simple)
+# 1. What was the linear model's R-squared? Re-compute it here.
 
-# Let's look at the R^2 -- this is much higher compared to the simple linear model! 
-cor(fitted(m),lexdec$RT)^2
 
-# 1. What was the simple linear model's R-squared? Re-compute it here.
 
-# 2. How would we add random by-item intercepts to the mixed effects model? (What counts as an item?)
+# 2. Let's add random by-subject and by-item intercepts. (What counts as an item?)
+
 
 
 # Let's look more closely at the random effects:
@@ -39,6 +37,10 @@ min(ranef(m)$Word[1])
 # Let's add random by-subject slopes for frequency.
 m = lmer(RT ~ Frequency + (1 + Frequency|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
+
+# To get rid of correlations between random effects:
+m.nocorr = lmer(RT ~ Frequency + (1|Subject) + (0 + Frequency|Subject) + (1|Word), data=lexdec, REML=F)
+summary(m.nocorr)
 
 # There are now two adjustment columns by subject, one for the intercepts and one for the slopes. We can see using summary() that there is greater variance in the intercepts than in the slopes. 
 head(ranef(m)$Subject)
@@ -59,11 +61,6 @@ summary(m.1)
 
 anova(m.0,m.1)
 
-m.2 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
-summary(m.2)
-
-anova(m.1,m.2)
-
 # To compute p-values for fixed effects via lmerTest:
 
 # Run the following two commands if you haven't installed the packages:
@@ -73,14 +70,3 @@ anova(m.1,m.2)
 library(lmerTest)
 m.3 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.3)
-
-# Plotting random effects
-
-# Run the following two commands if you haven't installed the packages:
-#
-# install.packages("sjPlot")
-# install.packages("sjmisc")
-
-library(sjPlot)
-library(sjmisc)
-sjp.lmer(m,sort.est = "sort.all",facet.grid=F)
