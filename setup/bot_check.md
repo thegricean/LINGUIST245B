@@ -1,4 +1,4 @@
-###Simple bot check
+### Simple bot check
 
 Follow the instructions below to add a simple bot check (written by Elisa Kreiss) to your experiment.
 
