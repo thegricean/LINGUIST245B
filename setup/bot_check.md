@@ -85,3 +85,4 @@ and this slide to the beginning of your experiment (in js file):
 ```
   exp.structure=["bot","i0", "instructions", "one_slider", 'subj_info', 'thanks'];
 ```
+
