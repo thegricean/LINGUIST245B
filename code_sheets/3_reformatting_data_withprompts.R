@@ -1,29 +1,39 @@
 # Data wrangling in the R tidyverse
 # Created by jdegen on May 11, 2017
-# Modified by jdegen on May 10, 2018
+# Modified by jdegen on May 14, 2020
 
+# Set working directory to directory of script
+this.dir <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(this.dir)
+
+#Load necessary packages
 library(tidyverse)
+library(languageR)
+library(lme4)
 
-# Load datasets. R will automatically read the contents of these files into data.frames.
-wide = read.csv("../data/lexdec_wide.csv")
+# This code sheet includes only a tiny fraction of all the powerful functions for reshaping and summarizing data included in the tidyverse. For tidy overviews, see the comprehensive tidyverse cheat sheets: https://rstudio.com/resources/cheatsheets/
+
+# Load datasets. R will automatically read the contents of these files into tibbles (which are tidyverse versions of data.frames).
+wide = read_csv("../data/lexdec_wide.csv")
 head(wide)
-wordinfo = read.csv("../data/wordinfo.csv")
+wordinfo = read_csv("../data/wordinfo.csv")
 head(wordinfo)
 
-# If your data isn't comma-separated, you can use read.table() instead
-wi = read.table("data/wordinfo.csv",sep=",",header=T)
-head(wi)
+# If your data isn't comma-separated, you can use read_delim() instead
+wd = read_delim("../data/wordinfo.csv",delim=",")
+head(wd)
 
 # In order to conduct our regression analysis, we need to
 # a) get wide into long format
 # b) add word info (frequency, family size).
 
-# We can easily switch between long and wide format using the gather() and spread() functions from the tidyr package.
+# We can easily switch between long and wide format using the gather() and spread() functions from the tidyr package. See the data import cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf
 long = wide %>%
   gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
   arrange(Subject)
 View(long)
-# 1. We just sorted the resulting long format by Subject. Sort it by Word instead.
+
+# We just sorted the resulting long format by Subject. Sort it by Word instead:
 
 
 
@@ -32,11 +42,7 @@ newwide = long %>%
   spread(Word,RT)
 head(newwide)
 
-tmp = long %>%
-  left_join(wordinfo,by=c("Word"))
-
-
-# We can add word level information to the long format using inner_join() -- see also the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
+# We can add word level information to the long format using inner_join(), see the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 lexdec = inner_join(long,wordinfo,by=c("Word"))
 head(lexdec)
 nrow(lexdec)
@@ -45,34 +51,54 @@ nrow(lexdec)
 wordinfo[wordinfo$Word == "almond",]
 lexdec[lexdec$Word == "almond",]
 
-# 2. Convince yourself that the information got correctly added by testing a few more cases.
+# Convince yourself that the information got correctly added by testing a few more cases:
 
 
 
-# Success! We are ready to run our mixed effects models.
-m = lmer(RT ~ Frequency*NativeLanguage + FamilySize + (1 + Frequency + FamilySize | Subject) + (1 + NativeLanguage | Word), data=lexdec)
+# Turn Subject and Word into factor variables rather than character variables
+lexdec = lexdec %>%
+  mutate(Subject = as.factor(Subject),Word = as.factor(Word))
+
+# If we want to turn all character variables into factors:
+lexdec = lexdec %>%
+  mutate_if(is.character,as.factor)
+
+# Success! We are ready to run our mixed effects models. What should the random effects structure look like for the following fixed effects?
+m = lmer(RT ~ Frequency*NativeLanguage +  ... , data=lexdec, REML=F)
 summary(m)
+
+# How do we handle these error messages?
+#- de-correlate random effects
+#- center fixed effects
+#- drop random effects terms
+# More information under ?convergence or here: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#convergence-warnings
+
+# De-correlate random effects:
+
+
+# Center predictors:
+
 
 # Often, we'll want to summarize information by groups. For example, if we want to compute RT means by subject:
 subj_means = lexdec %>%
   group_by(Subject) %>%
-  summarize(Mean = mean(RT), SD = sd(RT), Max = max(RT))
+  summarize(Mean = mean(RT))
+subj_means
 
-# 3. Compute RT means by Word instead.
-
-
-
-# Sometimes we want to save data.frames or R console output to a file. For example, we might want to save our newly created lexdec dataset:
-write.csv(lexdec,file="data/lexdec_long.csv")
-
-# 4. Using the R help, figure out how to suppress the row.names and the quotes in the output and re-write the file.
+# Compute RT means by Word instead:
 
 
+# Compute RT means only for the non-native group:
+
+
+
+# Sometimes we want to save data.frames/tibbles or R console output to a file. For example, we might want to save our newly created lexdec dataset:
+write_csv(lexdec,path="../data/lexdec_long.csv")
 
 # We can also save the console output to a file (for example, if you've run a particularly time-consuming regression analysis you may want to save the model results). 
 out = capture.output(summary(m))
 out
-cat("My awesome results","","", out, file="../data/modeloutput.txt", sep="\n")
+cat("My model results","","", out, file="../data/modeloutput.txt", sep="\n")
 
 # If you want to save the model directly for future use:
 save(m,file="../data/mymodel.RData")
@@ -80,5 +106,5 @@ save(m,file="../data/mymodel.RData")
 # You can later reload the model using load()
 load("../data/mymodel.RData")
 
-# 5. Why was "mymodel.RData" a poorly chosen name for the file? Choose a better name.
-save(m,file="../data/m.RData")
+# Why was "mymodel.RData" a poorly chosen name for the file? Choose a better name.
+
