@@ -8,7 +8,6 @@ setwd(this.dir)
 
 #Load necessary packages
 library(tidyverse)
-library(languageR)
 library(lme4)
 
 # This code sheet includes only a tiny fraction of all the powerful functions for reshaping and summarizing data included in the tidyverse. For tidy overviews, see the comprehensive tidyverse cheat sheets: https://rstudio.com/resources/cheatsheets/
@@ -43,7 +42,7 @@ newwide = long %>%
 head(newwide)
 
 # We can add word level information to the long format using inner_join(), see the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
-lexdec = inner_join(long,wordinfo,by=c("Word"))
+lexdec = left_join(long,wordinfo,by=c("Word"))
 head(lexdec)
 nrow(lexdec)
 
@@ -64,7 +63,7 @@ lexdec = lexdec %>%
   mutate_if(is.character,as.factor)
 
 # Success! We are ready to run our mixed effects models. What should the random effects structure look like for the following fixed effects?
-m = lmer(RT ~ Frequency*NativeLanguage +  ... , data=lexdec, REML=F)
+m = lmer(RT ~ Frequency*NativeLanguage + ... , data=lexdec, REML=F)
 summary(m)
 
 # How do we handle these error messages?
@@ -76,16 +75,19 @@ summary(m)
 # De-correlate random effects:
 
 
+
 # Center predictors:
+
 
 
 # Often, we'll want to summarize information by groups. For example, if we want to compute RT means by subject:
 subj_means = lexdec %>%
-  group_by(Subject) %>%
+  group_by(Word) %>%
   summarize(Mean = mean(RT))
 subj_means
 
 # Compute RT means by Word instead:
+
 
 
 # Compute RT means only for the non-native group:
