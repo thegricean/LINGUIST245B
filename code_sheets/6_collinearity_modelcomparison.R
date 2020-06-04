@@ -1,11 +1,12 @@
 # Collinearity & model evaluation
 # created by jdegen on Jun 1, 2017
-# modifiied by jdegen on May 31, 2018
+# modifiied by jdegen on Jun 4, 2020
 
 library(tidyverse)
 library(lme4)
 library(languageR)
-data(lexdec)
+library(MuMIn)
+
 source("helpers.R")
 
 #######################################
@@ -38,9 +39,12 @@ pairscor.fnc(lexdec[,c("RT","meanWeight","meanSize","Frequency")])
 # The two predictors are highly correlated!
 cor(lexdec$meanWeight,lexdec$meanSize)
 
-# Let's visualize
-ggplot(unique(lexdec[,c("meanWeight","Frequency","Word")]), aes(x=meanWeight,y=Frequency)) +
-  geom_text(aes(label=Word))
+## DEALING WITH COLLINEARITY
+
+# Good news: estimates are only problematic for the collinear predictors
+# If collinearity is in the control/nuisance predictors, nothing needs to be done
+# Somewhat good news: if collinear predictors are of interest but we’re not interested in effect direction, we can use model comparison to decide which predictor, if any, to include
+# If collinear predictors are of interest and we are interested in direction of effect, we need to reduce collinearity
 
 #######################################
 
@@ -68,6 +72,13 @@ anova(m.2,m.1b) # the model with meanWeight and frequency is better than the one
 summary(m.1a)$AICtab
 summary(m.1b)$AICtab
 
+
+## REDUCING COLLINEARITY
+# 3 options:
+# - center predictors
+# - re-express variable based on conceptual considerations (not always applicable)
+# - residualize -- regress collinear predictor against (combination of) correlated predictor(s)
+
 # Case study 2: Use centering to handle collinearity between Length and Frequency
 m = lmer(RT ~ Length * Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
@@ -78,11 +89,10 @@ pairscor.fnc(lexdec[,c("RT","Length","Frequency")])
 lexdec = cbind(lexdec, myCenter(lexdec[,c("Length","Frequency")]))
 summary(lexdec)
 
-pairscor.fnc(lexdec[,c("RT","Length","Frequency","cLength","cFrequency")])
-
 m = lmer(RT ~ cLength * cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
 
+# Is significance of main effects in main-effects-only model impacted by centering?
 m.1 = lmer(RT ~ cLength + cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.1)
 
@@ -93,13 +103,15 @@ summary(m.2)
 
 # Model validation
 lexdec$Fitted = fitted(m.full)
-(cor(lexdec$RT,lexdec$Fitted))^2 # simple, but not quite correct way of computing R^2 value for mixed effects model (does not take into account structure introduced by random effects -- see also this blog post https://jonlefcheck.net/2013/03/13/r2-for-linear-mixed-effects-models/)
+
+ggplot(lexdec, aes(x=Fitted,y=RT)) +
+  geom_point() +
+  geom_smooth()
+
+# overall correlation between predicted and actual RTs:
+cor(lexdec$Fitted,lexdec$RT)
 
 # To compute marginal R^2 (variance explained by fixed effects) and conditional R^2 (variance explained by fixed and random effects):
-install.packages("piecewiseSEM")
-library(piecewiseSEM)
-
-sem.model.fits(m.full) # Conditional R^2 is somewhat lower than R^2 computed without taking into account random effects
-
-
-
+r.squaredGLMM(m) 
+# marginal R^2 (variance explained by fixed effects): .06
+# conditional R^2 (variance explained by fixed and random effects jointly): .49
