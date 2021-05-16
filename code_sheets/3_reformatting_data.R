@@ -10,13 +10,16 @@ setwd(this.dir)
 library(tidyverse)
 library(lme4)
 
-# This code sheet includes only a tiny fraction of all the powerful functions for reshaping and summarizing data included in the tidyverse. For tidy overviews, see the comprehensive tidyverse cheat sheets: https://rstudio.com/resources/cheatsheets/
+# This code sheet includes only a tiny fraction of all the powerful functions for reshaping and summarizing data included in the tidyverse. For tidy overviews, see the comprehensive tidyverse cheat sheets: https://rstudio.com/resources/cheatsheets/ The most relevant for data wrangling is the one on "Data Transformation with dplyr": https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 
 # Load datasets. R will automatically read the contents of these files into tibbles (which are tidyverse versions of data.frames).
 wide = read_csv("../data/lexdec_wide.csv")
 head(wide)
+summary(wide)
+
 wordinfo = read_csv("../data/wordinfo.csv")
 head(wordinfo)
+summary(wordinfo)
 
 # If your data isn't comma-separated, you can use read_delim() instead
 wd = read_delim("../data/wordinfo.csv",delim=",")
@@ -26,26 +29,26 @@ head(wd)
 # a) get wide into long format
 # b) add word info (frequency, family size).
 
-# We can easily switch between long and wide format using the gather() and spread() functions from the tidyr package. See the data import cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf
+# We can easily switch between long and wide format using the pivot_longer() and pivot_wider() functions from the tidyr package. See the data import cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf
 # Note: instead of gather(), consider using pivot_longer(), and instead of sprea(), pivot_wider()
 long = wide %>%
-  gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
+  pivot_longer(cols=!c("Subject","Sex","NativeLanguage"),names_to="Word",values_to="RT") %>%
   arrange(Subject)
 View(long)
 
 # We just sorted the resulting long format by Subject. Sort it by Word instead:
 long = wide %>%
-  gather(Word,RT,-Subject,-Sex,-NativeLanguage) %>%
+  pivot_longer(cols=!c("Subject","Sex","NativeLanguage"),names_to="Word",values_to="RT") %>%
   arrange(Word)
 View(long)
 
 
 # To convert back to wide format
 newwide = long %>%
-  spread(Word,RT)
+  pivot_wider(names_from = "Word", values_from="RT")
 head(newwide)
 
-# We can add word level information to the long format using inner_join(), see the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
+# We can add word level information to the long format using left_join(), see the data transformation cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
 lexdec = left_join(long,wordinfo,by=c("Word"))
 head(lexdec)
 nrow(lexdec)
