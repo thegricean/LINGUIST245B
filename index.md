@@ -69,18 +69,18 @@ Each student will complete a class project, which will be either a replication o
 The course will meet Tuesdays from 3-5:50pm in Room 240-201.
 
 
-| Week | Date | Topic         | | Date | Topic         |
-| ---- | ---- | ------------- | | ---- | ------------- |
-| 1 | Apr 4  | Course planning; Linking hypotheses; Experimental design basics <br /> Tanenhaus (2004); Ch. 7 of R & R; Ch. XXX of Experimentology || Apr 6  | The point of experimentation <br /> Popper, Kuhn, Lakatos, Frank & Saxe (2012)|
-| 2 | Apr 11 | Skills: git tutorial; GitHub repo organization ||  Apr 13 | SI: response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/11346456/download?download_frd=1) |
-| 3 | Apr 18 | SI: reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/11448809/download?download_frd=1)  || Apr 20 | SI: visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/11448810/download?download_frd=1); [Sun & Breheny 2020](https://canvas.stanford.edu/files/11448811/download?download_frd=1) |
-| 4 | Apr 25 |  Project: Lightning presentations    || Apr 27 |  Skills: Programming experiments in jsPsych and deploying on GitHub Pages|
-| 5 | May 2 | Open science and pre-registration   || May 4 | Skills: Using proliferate to post experiments to Prolific |
-| 6 | May 9 | Project: Experiment workshop || May 11 | Data analysis: visualization with ggplot |
-| 7 | May 16 | Data analysis: data wrangling in the tidyverse   || May 18 | Data analysis: linear regression|
-| 8 | May 23 |  Data analysis: mixed effects linear regression || May 25 | Data analysis: (mixed effects) logistic regression  |
-| 9 | May 30 | Data analysis: Bayesian vs. frequentist inference  || Jun 1 |  Project: Final presentations |
-| 10 | Jun 6 | Project: Final presentations || Jun 8 |  NO CLASS    | |
+| Week | Date and topic    |  Date and Topic   |
+| ---- | ----------------- | ----------------- |
+| 1 | **Apr 4**  <br /> Course planning; Linking hypotheses; Experimental design basics <br /> Tanenhaus (2004); Ch. 7 of R & R; Ch. XXX of Experimentology | **Apr 6**  <br /> The point of experimentation <br /> Popper, Kuhn, Lakatos, Frank & Saxe (2012)|
+| 2 | **Apr 11** <br /> Skills: git tutorial; GitHub repo organization |  **Apr 13** <br /> SI: response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/11346456/download?download_frd=1) |
+| 3 | **Apr 18** <br /> SI: reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/11448809/download?download_frd=1)  | **Apr 20** <br /> SI: visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/11448810/download?download_frd=1); [Sun & Breheny 2020](https://canvas.stanford.edu/files/11448811/download?download_frd=1) |
+| 4 | **Apr 25** <br />  Project: Lightning presentations    | **Apr 27** <br />  Skills: Programming experiments in jsPsych and deploying on GitHub Pages|
+| 5 | **May 2** <br /> Open science and pre-registration   | **May 4** <br /> Skills: Using proliferate to post experiments to Prolific |
+| 6 | **May 9** <br /> Project: Experiment workshop | **May 11** <br /> Data analysis: visualization with ggplot |
+| 7 | **May 16** <br /> Data analysis: data wrangling in the tidyverse   | **May 18** <br /> Data analysis: linear regression|
+| 8 | **May 23** <br />  Data analysis: mixed effects linear regression | **May 25** <br /> Data analysis: (mixed effects) logistic regression  |
+| 9 | **May 30** <br /> Data analysis: Bayesian vs. frequentist inference  | **Jun 1** <br />  Project: Final presentations |
+| 10 | **Jun 6** <br /> Project: Final presentations | **Jun 8** <br />  NO CLASS    | 
 
 
 
