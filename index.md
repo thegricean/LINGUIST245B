@@ -14,6 +14,7 @@ Instead of office hours, please book a meeting at jdegen.youcanbook.me if you wo
 
 | Name:        | Will Clapp           | 
 | Contact: | wsclapp@stanford.edu  | 
+| Office hours: | Thu, 2-3:30, 460-060 (ALPS Lab) | 
 
 
 
