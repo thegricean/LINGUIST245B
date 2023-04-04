@@ -69,13 +69,25 @@ Each student will complete a class project, which will be either a replication o
 The course will meet Tuesdays from 3-5:50pm in Room 240-201.
 
 
-## Schedule
-
 | Week | Date | Topic         | Readings  || Date | Topic         | Readings  |
 | ---- | ---- | ------------- | --------- || ---- | ------------- | --------- |
 | 1 | Apr 4  | Course planning; Linking hypotheses; Experimental design basics | Tanenhaus (2004); Ch. 7 of R & R; Ch. XXX of Experimentology || Apr 6  | The point of experimentation | Popper, Kuhn, Lakatos, Frank & Saxe (2012)|
 
 
+## Project timeline
+
+| By end of week | Action |
+|:--------------:|:----|
+| 1 | Select an experiment to replicate/run. Email JD with your choice, [schedule 30 min meeting](https://jdegen.youcanbook.me/) for week 2 |
+| 2 | Meet with JD to discuss project. |
+| 3 | Give lightning project presentation and email JD link to project repo. |
+| 4 | Start implementing experiment. |
+| 5 | Finish first draft of experiment (general infrastructure, including data recording) and pre-reg. Email JD link to pre-reg draft. Push exp to repo. |
+| 6 | Finalize experiment (including all stimuli). Push exp to repo. Email JD link to experiment. |
+| 7 | Run experiment. Push anonymized data to repo. |
+| 8 | Analyze and visualize data. Push R scripts and graphs to repo. |
+| 9, 10 | Present project. |
+| 11 | Submit writeup (either include in repo or email JD). |
 
 
 
