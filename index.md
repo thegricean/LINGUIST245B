@@ -66,7 +66,7 @@ Each student will complete a class project, which will be either a replication o
 
 ## Schedule
 
-The course will meet Tuesdays from 3-5:50pm in Room 240-201.
+The course will meet Tuesdays from 10-11:20am in Room 460-048.
 
 
 | Week | Date and topic    |  Date and Topic   |
@@ -74,16 +74,13 @@ The course will meet Tuesdays from 3-5:50pm in Room 240-201.
 | 1 | **Apr 4**  <br /> Course planning; Linking hypotheses; Experimental design basics <br /> [Tanenhaus 2004](https://canvas.stanford.edu/files/11346472/download?download_frd=1); [Ch. 7 of R & R](https://canvas.stanford.edu/files/11346510/download?download_frd=1); [Ch. 1, 8, 9 of Experimentology](https://experimentology.io/) | **Apr 6**  <br /> What does it mean to test a theory? <br /> [Popper](https://plato.stanford.edu/entries/popper/#GroHumKno); [Kuhn](https://plato.stanford.edu/entries/thomas-kuhn/#3); [Lakatos](https://en.wikipedia.org/wiki/Imre_Lakatos#Research_programmes)|
 | 2 | **Apr 11** <br /> `Skills:` [git tutorial](https://sebschu.github.io/web-based-experiments/tutorials/git/); GitHub repo organization |  **Apr 13** <br /> `SI:` response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/11346456/download?download_frd=1); [Kursat & Degen 2020](https://canvas.stanford.edu/files/11449047/download?download_frd=1) |
 | 3 | **Apr 18** <br /> `SI:` reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/11448809/download?download_frd=1); [Politzer-Ahles & Husband 2018](https://canvas.stanford.edu/files/11449066/download?download_frd=1)  | **Apr 20** <br /> `SI:` visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/11448810/download?download_frd=1), p. 376-390, 404-410; [Sun & Breheny 2020](https://canvas.stanford.edu/files/11448811/download?download_frd=1), p. 949-956, 971-978 |
-| 4 | **Apr 25** <br />  Project: Lightning presentations    | **Apr 27** <br />  Skills: Programming experiments in jsPsych and deploying on GitHub Pages|
+| 4 | **Apr 25** <br />  `Project:` Lightning presentations    | **Apr 27** <br />  `Skills:` Programming experiments in jsPsych and deploying on GitHub Pages|
 | 5 | **May 2** <br /> Open science and pre-registration  <br /> Frank & Saxe (2012) | **May 4** <br /> Skills: Using proliferate to post experiments to Prolific |
-| 6 | **May 9** <br /> Project: Experiment workshop | **May 11** <br /> Data analysis: visualization with ggplot |
-| 7 | **May 16** <br /> Data analysis: data wrangling in the tidyverse   | **May 18** <br /> Data analysis: linear regression|
-| 8 | **May 23** <br />  Data analysis: mixed effects linear regression | **May 25** <br /> Data analysis: (mixed effects) logistic regression  |
-| 9 | **May 30** <br /> Data analysis: Bayesian vs. frequentist inference  | **Jun 1** <br />  Project: Final presentations |
-| 10 | **Jun 6** <br /> Project: Final presentations | **Jun 8** <br />  NO CLASS    | 
-
-
-
+| 6 | **May 9** <br /> `Project:` Experiment workshop | **May 11** <br /> `Data analysis:` visualization with ggplot |
+| 7 | **May 16** <br /> `Data analysis:` data wrangling in the tidyverse   | **May 18** <br /> `Data analysis:` linear regression|
+| 8 | **May 23** <br />  `Data analysis:` mixed effects linear regression | **May 25** <br /> `Data analysis:` (mixed effects) logistic regression  |
+| 9 | **May 30** <br /> `Data analysis:` Bayesian vs. frequentist inference  | **Jun 1** <br />  `Project:` Final presentations |
+| 10 | **Jun 6** <br /> `Project:` Final presentations | **Jun 8** <br />  NO CLASS    | 
 
 
 
@@ -96,7 +93,7 @@ The course will meet Tuesdays from 3-5:50pm in Room 240-201.
 | 3 | Finalize conceptual design and stimuli of experiment. |
 | 4 | Give lightning project presentation and start implementing experiment. |
 | 5 | Finish first draft of experiment (general infrastructure, including data recording) and pre-reg. Email JD link to pre-reg draft. Push experiment to repo. |
-| 6 | Finalize experiment (including all stimuli). Push exp to repo. Email JD link to experiment. |
+| 6 | Finalize experiment (including all stimuli) and pre-reg. Push experiment to repo. Email JD link to experiment. |
 | 7 | Run experiment. Push anonymized data to repo. |
 | 8 | Analyze and visualize data. Push R scripts and graphs to repo. |
 | 9, 10 | Present project. |
