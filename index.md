@@ -69,9 +69,14 @@ Each student will complete a class project, which will be either a replication o
 The course will meet Tuesdays from 3-5:50pm in Room 240-201.
 
 
-| Week | Date | Topic         | Readings  || Date | Topic         | Readings  |
-| ---- | ---- | ------------- | --------- || ---- | ------------- | --------- |
-| 1 | Apr 4  | Course planning; Linking hypotheses; Experimental design basics | Tanenhaus (2004); Ch. 7 of R & R; Ch. XXX of Experimentology || Apr 6  | The point of experimentation | Popper, Kuhn, Lakatos, Frank & Saxe (2012)|
+| Week | Date | Topic         | | Date | Topic         |
+| ---- | ---- | ------------- | | ---- | ------------- |
+| 1 | Apr 4  | Course planning; Linking hypotheses; Experimental design basics <br /> Tanenhaus (2004); Ch. 7 of R & R; Ch. XXX of Experimentology || Apr 6  | The point of experimentation <br /> Popper, Kuhn, Lakatos, Frank & Saxe (2012)|
+
+
+
+
+
 
 
 ## Project timeline
