@@ -71,11 +71,11 @@ The course will meet Tuesdays from 10-11:20am in Room 460-048.
 
 
 | Week | Date and topic    |  Date and Topic   |
-|:---- | ---------------------- | ---------------------- |
+|:----:| ---------------------- | ---------------------- |
 | 1 | **Apr 4** [slides](slides/1_overview.pdf) <br /> Course planning; Linking hypotheses; Experimental design basics <br /> [Tanenhaus 2004](https://canvas.stanford.edu/files/11346472/download?download_frd=1); [Ch. 7 of R & R](https://canvas.stanford.edu/files/11346510/download?download_frd=1); [Ch. 1, 8, 9 of Experimentology](https://experimentology.io/) | **Apr 6**  <br /> What does it mean to test a theory? <br /> [Popper](https://plato.stanford.edu/entries/popper/#GroHumKno) (Madelaine); [Kuhn](https://plato.stanford.edu/entries/thomas-kuhn/#3) (Jacob); [Lakatos](https://en.wikipedia.org/wiki/Imre_Lakatos#Research_programmes)|
 | 2 | **Apr 11** <br /> `Skills:` [git tutorial](https://sebschu.github.io/web-based-experiments/tutorials/git/); GitHub repo organization |  **Apr 13** <br /> `SI:` response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/11346456/download?download_frd=1) (Emily); [Kursat & Degen 2020](https://canvas.stanford.edu/files/11449047/download?download_frd=1) (Ahmad) |
 | 3 | **Apr 18** <br /> `SI:` reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/11448809/download?download_frd=1) (Yin Lin); [Politzer-Ahles & Husband 2018](https://canvas.stanford.edu/files/11449066/download?download_frd=1)  (Irene) | **Apr 20** <br /> `SI:` visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/11448810/download?download_frd=1), p. 376-390, 404-410; [Sun & Breheny 2020](https://canvas.stanford.edu/files/11448811/download?download_frd=1), p. 949-956, 971-978 (Madigan) |
-| 4 | **Apr 25** <br />  `Project:` Lightning presentations    | **Apr 27** <br />  `Skills:` Programming experiments in jsPsych and deploying on GitHub Pages <br /> [Degen & Tonhauser 2020](https://canvas.stanford.edu/files/11460231/download?download_frd=1); [Crump et al 2013](https://canvas.stanford.edu/files/11346516/download?download_frd=1) |
+| 4 | **Apr 25** <br />  `Project:` Lightning presentations    | **Apr 27** <br />  `Skills:` Programming experiments in jsPsych and deploying on GitHub Pages <br /> [Degen & Tonhauser 2022](https://canvas.stanford.edu/files/11460231/download?download_frd=1); [Crump et al 2013](https://canvas.stanford.edu/files/11346516/download?download_frd=1) |
 | 5 | **May 2** <br /> Open science and pre-registration  <br /> [Simmons et al 2011](https://canvas.stanford.edu/files/11346508/download?download_frd=1); [Frank & Saxe 2012](https://journals.sagepub.com/doi/full/10.1177/1745691612460686); [Open Science Framework 2015](https://canvas.stanford.edu/files/11346507/download?download_frd=1) | **May 4** <br /> `Skills:` Using proliferate to post experiments to Prolific |
 | 6 | **May 9** <br /> `Project:` Experiment workshop | **May 11** <br /> `Data analysis:` visualization with ggplot |
 | 7 | **May 16** <br /> `Data analysis:` data wrangling in the tidyverse   | **May 18** <br /> `Data analysis:` linear regression|
@@ -87,8 +87,8 @@ The course will meet Tuesdays from 10-11:20am in Room 460-048.
 
 ## Project timeline
 
-| By end of week | Action |
-|:--------------:|:----|
+| Week | Action |
+|:----:|:----|
 | 1 | Select an experiment to replicate/run. Email JD your choice and [schedule a 30 min meeting](https://jdegen.youcanbook.me/) for week 2. <br /> *Work through [UNIX tutorial](http://www.ee.surrey.ac.uk/Teaching/Unix/).*  |
 | 2 | Meet with JD to discuss project and email JD the link to your project repo. |
 | 3 | Finalize conceptual design and stimuli of experiment. |
