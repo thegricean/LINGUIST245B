@@ -1,0 +1,15 @@
+.option_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+    
+}
+
+.option {
+    font-size: 24px;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- load jsPsych plugins here-->
+        <script src="jspsych/dist/jspsych.js"></script>
+        <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
+        <script src="jspsych/dist/plugin-html-button-response.js"></script>
+        <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+        <script src="jspsych/dist/plugin-preload.js"></script>
+        <script src="jspsych/dist/plugin-survey.js"></script>
+        <script src="jspsych/dist/plugin-survey-html-form.js"></script>
+
+        <!-- CSS -->
+        <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+        <link href="experiment.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+
+        <!-- Load our own custom js scripts, including experiment logic and helper 
+        functions. Remember these are read in order, so if `experiment.js` uses any 
+        functions defined in `util.js`, that script needs to be referenced first -->
+        <script src="util.js"></script>
+        <script src="experiment.js"></script>
+        
+
+        <!-- This is the name that will appear on the browser tab. -->
+        <title>Language Experiment</title>
+    </head>
+</html>
