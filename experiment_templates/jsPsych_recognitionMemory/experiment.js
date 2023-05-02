@@ -9,7 +9,7 @@
 const jsPsych = initJsPsych({
     show_progress_bar: true,
     on_finish: function () {
-        jsPsych.data.displayData('csv');
+        proliferate.submit({"trials": data.values()});
       }
   });
 
@@ -17,22 +17,22 @@ const jsPsych = initJsPsych({
 // Define an empty array called 'timeline'. This is where the experiment
 // logic will live. At the end of this script, we tell JsPsych to run 
 // through the trials in `timeline` (in the same order they're pushed).
-let timeline = []
+let timeline = [];
 
 // If you're using any media (audio, images, video) , it's a good idea
 // to load them in advance, which prevents the experiment from lagging
 // while it's running. To do this, just generate an array with each 
 // media path and supply that to the `jsPsychPreload` plugin:
 // https://www.jspsych.org/7.3/plugins/preload/
-const preload_array = ['audio/Violin.wav', 'audio/Bologna.wav']
+const preload_array = ['audio/Violin.wav', 'audio/Bologna.wav'];
 
 const preload_trial = {
     type: jsPsychPreload,
     audio: preload_array
-}
+};
 // After a trial object is constructed, we need to push it to the
 // timeline array. This can be done individually or in groups.
-timeline.push(preload_trial)
+timeline.push(preload_trial);
 
 // The first trial a participant interacts with should include a consent
 // form. Included here is the standard department protocol. It's a good 
