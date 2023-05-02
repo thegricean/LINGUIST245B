@@ -16,11 +16,11 @@
         <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
 
         <!-- Load our own custom js scripts, including experiment logic and helper 
-        functions. Remember these are read in order, so if `experiment.js` uses any 
-        functions defined in `util.js`, that script needs to be referenced first -->
+        functions. Remember these are read in order, so if `experiment.js` uses anything
+        defined in `trials.js` or `util.js`, those scripts need to be referenced first -->
+        <script src="trials.js"></script>
         <script src="util.js"></script>
         <script src="experiment.js"></script>
-        
 
         <!-- This is the name that will appear on the browser tab. -->
         <title>Language Experiment</title>

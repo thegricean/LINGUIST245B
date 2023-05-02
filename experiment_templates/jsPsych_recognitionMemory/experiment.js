@@ -1,3 +1,19 @@
+// First, initialize jsPsych using the `initJsPsych()` function.
+// A few parameters can optionally be passed as arguments to this function
+// that will globally affect how the experiment runs. One of these for example
+// is adding a progress bar, which we've done below. We can also use the 
+// `on_finish` parameter to display that CSV-style data object at the end
+// of the experiment, which is useful for debugging. This page includes a list
+// of other things you might want to do here:
+// https://www.jspsych.org/7.3/reference/jspsych/#initjspsych
+const jsPsych = initJsPsych({
+    show_progress_bar: true,
+    on_finish: function () {
+        jsPsych.data.displayData('csv');
+      }
+  });
+
+
 // Define an empty array called 'timeline'. This is where the experiment
 // logic will live. At the end of this script, we tell JsPsych to run 
 // through the trials in `timeline` (in the same order they're pushed).
@@ -54,7 +70,7 @@ timeline.push(irb, gen_instructions)
 // html format on the participant's window. This can be used for example to 
 // remind participants of which key is associated with which response.
 // 
-// At the end of the experiment, you'll get a JSON-style output with all your 
+// At the end of the experiment, you'll get a csv-style output with all your 
 // data. Importantly, the only things that will show up there are the default 
 // data (trial type, time elapsed, trial index, etc.) and plugin-specific data 
 // (RT, response, etc.). Any custom data you want to record has to be specified 
@@ -73,94 +89,42 @@ timeline.push(irb, gen_instructions)
 // defined within jsPsych, the output file will include columns both for `correct`
 // and for `result` because we included them in the `data` object.
 // https://www.jspsych.org/7.3/overview/dynamic-parameters/
-const trial_1 = {
-    type: jsPsychAudioKeyboardResponse,
-    prompt: "<div class=\"option_container\"><div class=\"option\">NEW<br><br><b>D</b></div><div class=\"option\">OLD<br><br><b>K</b></div></div>",
-    choices: ["d", 'k'],
-    stimulus: "audio/Violin.wav",
-    trial_duration: 4000,
-    response_allowed_while_playing: false,
-    data: {
-        correct: "NEW"
-    },
-    on_finish: function(data) {
-        evaluate_response(data)
-    }
-}
 
-const trial_2 = {
-    type: jsPsychAudioKeyboardResponse,
-    prompt: "<div class=\"option_container\"><div class=\"option\">NEW<br><br><b>D</b></div><div class=\"option\">OLD<br><br><b>K</b></div></div>",
-    choices: ["d", 'k'],
-    stimulus: "audio/Bologna.wav",
-    trial_duration: 4000,
-    response_allowed_while_playing: false,
-    data: {
-        correct: "NEW"
-    },
-    on_finish: function(data) {
-        evaluate_response(data)
-    }
-}
-
-const trial_3 = {
-    type: jsPsychAudioKeyboardResponse,
-    prompt: "<div class=\"option_container\"><div class=\"option\">NEW<br><br><b>D</b></div><div class=\"option\">OLD<br><br><b>K</b></div></div>",
-    choices: ["d", 'k'],
-    stimulus: "audio/Violin.wav",
-    trial_duration: 4000,
-    response_allowed_while_playing: false,
-    data: {
-        correct: "OLD"
-    },
-    on_finish: function(data) {
-        evaluate_response(data)
-    }
-}
-
-const trial_4 = {
-    type: jsPsychAudioKeyboardResponse,
-    prompt: "<div class=\"option_container\"><div class=\"option\">NEW<br><br><b>D</b></div><div class=\"option\">OLD<br><br><b>K</b></div></div>",
-    choices: ["d", 'k'],
-    stimulus: "audio/Bologna.wav",
-    trial_duration: 4000,
-    response_allowed_while_playing: false,
-    data: {
-        correct: "OLD"
-    },
-    on_finish: function(data) {
-        evaluate_response(data)
-    }
-}
-
-// We might want to have a standardized 1-second ITI. For this, we just need a 
-// trial that does nothing for some amount of time. We can use the plugin 
-// `jsPsychHtmlKeyboardResponse` (among others) and specify that there's 
-// no right answer, and the trial ends after 1s. 
-const ITI = {
-    type: jsPsychHtmlKeyboardResponse,
-    choices: [""],
-    stimulus: "",
-    response_ends_trial: false,
-    trial_duration: 1000
-}
-
-// Now we have 4 test trials and an ITI trial. Since we want the ITI to happen
-// after every single trial, it makes sense to automate pushing these to the 
-// timeline. 
-const trial_array = [trial_1, trial_2, trial_3, trial_4]
-for (let i = 0; i < trial_array.length; i++) {
-    timeline.push(trial_array[i], ITI)
-}
-
-// As an aside, it can be burdensome to manually define every single trial, 
-// especially when most of the parameters are repeated! To get around this,
+// It's burdensome to manually define every single trial, 
+// especially when most of the parameters are repeated. To get around this,
 // you can use `timeline_variables` to define chunks of experiment logic and
 // loop through that with e.g. a different auditory stimulus each time.
 // Here's more info on that:
 // https://www.jspsych.org/7.3/overview/timeline/#timeline-variables
 
+let tv_array = create_tv_array(trial_objects);
+tv_array = set_trial_order(tv_array)
 
+const trials = {
+    timeline: [
+        {
+            type: jsPsychAudioKeyboardResponse,
+            choices: ['d', 'k'],
+            stimulus: jsPsych.timelineVariable('stimulus'),
+            response_allowed_while_playing: false,
+            trial_duration: 4000,
+            prompt: `<div class=\"option_container\"><div class=\"option\">NEW<br><br><b>D</b></div><div class=\"option\">OLD<br><br><b>K</b></div></div>`,
+            on_finish: function(data) {
+                evaluate_response(data);
+            },
+            data: jsPsych.timelineVariable('data')
+        },
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            choices: [""],
+            stimulus: "",
+            response_ends_trial: false,
+            trial_duration: 1000
+        }
+    ],
+    timeline_variables: tv_array,
+}
+timeline.push(trials)
 
 // The last thing to do is to create a questionnaire to get more info about 
 // our participants and how the experiment worked. There are two main ways 
@@ -256,25 +220,6 @@ const thanks = {
 }
 
 timeline.push(quest_intstructions, questionnaire, thanks);
-
-
-
-// Remember, all of that above was just to compile an array containing the
-// logic of the experiment. Now we have to initialize jsPsych and run it. 
-// To do this, we just create a variable using the `initJsPsych()` function.
-// A few parameters can optionally be passed as arguments to this function
-// that will globally affect how the experiment runs. One of these for example
-// is adding a progress bar, which we've done below. We can also use the 
-// `on_finish` parameter to display that JSON-style data object at the end
-// of the experiment, which is useful for debugging. This page includes a list
-// of other things you might want to do here:
-// https://www.jspsych.org/7.3/reference/jspsych/#initjspsych
-const jsPsych = initJsPsych({
-    show_progress_bar: true,
-    on_finish: function () {
-        jsPsych.data.displayData('csv');
-      }
-  });
 
 // Finally, we run it.
 jsPsych.run(timeline);
