@@ -45,6 +45,9 @@ See the relevant [Experimentology chapter](https://experimentology.io/15-viz) fo
 3. Show the (variability in) the data. **Always include error bars!**
 4. Maximize information, minimize ink.
 
+## Example dataset: lexical decision
+
+The dataset is part of the `languageR` package and is reported in Baayen, Feldman, & Schreuder (2006). The data are response times for 79 English nouns collected from 21 participants in a lexical decision task. 
 
 ```{r}
 source("helpers.R")
