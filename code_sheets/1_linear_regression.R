@@ -45,9 +45,16 @@ m.f = lm(RT ~ LanguageBackground, data=lexdec)
 summary(m.f)
 
 # Bayesian stats
-# Let's run the exact same model the Bayesian way! We haven't specified a prior, so the model will assume weakly informative default priors.
+# Let's run the exact same model the Bayesian way! We haven't specified a prior, so the model will assume flat default priors.
 m.b = brm(RT ~ LanguageBackground, data=lexdec)
 summary(m.b)
+
+# To see the assumed priors:
+prior_summary(m.b)
+
+# To do hypothesis-testing: get the Bayes Factor for the effect of LanguageBackground being greater than 0. (Evid.Ratio shows the Bayes Factor.)
+h <- hypothesis(m.b, "LanguageBackgroundNonMEnglish > 0")
+print(h, digits = 4)
 
 # 5. Extend the simple model to include an additional predictor for frequency. If you don't remember the name of the frequency column in the dataset, use the names() function.
 
