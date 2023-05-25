@@ -1,14 +1,14 @@
 # Mixed effects logistic regression
 # created by jdegen on May 25, 2017
-# modified by jdegen on May 26, 2020
+# modified by jdegen on May 25, 2023
 
 library(tidyverse)
 library(lme4)
 library(languageR)
+library(brms)
 
 # set working directory to directory of script
-this.dir <- dirname(rstudioapi::getSourceEditorContext()$path)
-setwd(this.dir)
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 # The dative alternation dataset from Bresnan et al. 2007
 data(dative)
@@ -67,7 +67,7 @@ m.c = glmer(RealizationOfRecipient ~ cAnimacyOfRec + (1|Verb), data=dative, fami
 summary(m.c)
 # How would you report this result? 
 
-# We can add additional predictors just as in the linear model
+# We can conduct multivariate regression (add additional predictors) just as in the linear model
 m.c = glmer(RealizationOfRecipient ~ cAnimacyOfRec + cLengthOfRecipient + (1|Verb), data=dative, family="binomial")
 summary(m.c)
 
@@ -93,3 +93,13 @@ table(dative$Prediction)
 prop.table(table(dative$Prediction))
 
 # You could report the result of the model in line 66 as: "There was a main effect of animacy (beta=1.44, SE=0.16, p<.0001) such that inanimate recipients were more likely to be realized as PPs than animate recipients."
+
+# Trouble-shooting: You may get model convergence warnings. You can look for guidance on convergence within RStudio by typing ?convergence in the console. Here is an external trouble-shooting guide: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html
+
+# And, as ever, we can run the same models the Bayesian way:
+m.b = brm(RealizationOfRecipient ~ cAnimacyOfRec + cLengthOfRecipient + (1|Verb), 
+          data=dative, 
+          family=bernoulli(link = "logit"),
+          cores=4)
+summary(m.b)
+plot(m.b)
