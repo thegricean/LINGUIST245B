@@ -90,11 +90,14 @@ vif.mer(m)
 
 pairscor.fnc(lexdec[,c("RT","Length","Frequency")])
 
-lexdec = cbind(lexdec, myCenter(lexdec[,c("Length","Frequency")]))
+lexdec = lexdec %>% 
+  mutate(cLength = Length - mean(Length),
+         cFrequency = Frequency - mean(Frequency))
 summary(lexdec)
 
 m = lmer(RT ~ cLength * cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
+vif.mer(m)
 
 # Is significance of main effects in main-effects-only model impacted by centering?
 m.1 = lmer(RT ~ cLength + cFrequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
@@ -104,7 +107,7 @@ m.2 = lmer(RT ~ Length + Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F
 summary(m.2)
 
 #######################################
-# MODEL VALIDATION
+# MODEL EVALUATION
 
 lexdec$Fitted = fitted(m.full)
 
