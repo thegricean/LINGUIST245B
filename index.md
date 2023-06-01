@@ -80,7 +80,7 @@ The course will meet Tuesdays from 10-11:20am in Room 460-048.
 | 6 | **May 9** <br /> `Project:` Experiment workshop | **May 11** [code sheet](code_sheets/4_ggplot.Rmd) <br /> `Data analysis:` visualization with ggplot |
 | 7 | **May 16** [code sheet](code_sheets/1_linear_regression_withprompts.R) <br />  `Data analysis:` estimation, inference, linear regression | **May 18** <br /> `Data analysis:` linear regression and coefficient interpretation |
 | 8 | **May 23** [code sheet](code_sheets/2_mixed_effects_linear_regression_withprompts.R) <br />  `Data analysis:` mixed effects linear regression | **May 25** [slides](slides/5_mixed_effects_logistic_regression.pdf) [code sheet](code_sheets/5_mixed_effects_logistic_regression_withprompts.R) <br /> `Data analysis:` (mixed effects) logistic regression  |
-| 9 | **May 30** <br /> `Data analysis:` Frequent issues and solutions in mixed effects modeling; data wrangling  | **Jun 1** <br />  `Data analysis:` (optional) Ordinal regression; Data analysis workshop |
+| 9 | **May 30** <br /> `Data analysis:` Frequent issues and solutions in mixed effects modeling; data wrangling  | **Jun 1** <br />  `Data analysis:` (optional) Ordinal regression; Data analysis workshop  <br /> [Bürkner & Vuorre 2019](https://journals.sagepub.com/doi/pdf/10.1177/2515245918823199) |
 | 10 | **Jun 6** <br /> `Project:` Final presentations | **Jun 8** <br />  NO CLASS    | 
 
 
