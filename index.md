@@ -14,7 +14,7 @@ Instead of office hours, please book a meeting at jdegen.youcanbook.me if you wo
 
 | Name:        | Bran Papineau           | 
 | Contact: | branpap@stanford.edu  | 
-| Office hours: | Time TBD, 460-060 (ALPS Lab) | 
+| Office hours: | Fridays 10am-12pm, 460-060 (ALPS Lab) | 
 
 
 
