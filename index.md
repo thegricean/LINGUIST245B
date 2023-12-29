@@ -83,7 +83,7 @@ Feb 19 Presidents' Day
 | 6 | **Feb 12** <br /> `Project:` Experiment workshop | **Feb 14** [code sheet](code_sheets/4_ggplot.Rmd) <br /> `Data analysis:` visualization with ggplot |
 | 7 | **Feb 19** NO CLASS -- PRESIDENTS' DAY | **Feb 21** [code sheet](code_sheets/1_linear_regression_withprompts.R) <br />  `Data analysis:` estimation, inference, linear regression |
 | 8 | **Feb 26** <br /> `Data analysis:` linear regression and coefficient interpretation | **Feb 28** [code sheet](code_sheets/2_mixed_effects_linear_regression_withprompts.R) <br />  `Data analysis:` mixed effects linear regression  |
-| 9 | **Mar 4 ** [slides](slides/5_mixed_effects_logistic_regression.pdf) [code sheet](code_sheets/5_mixed_effects_logistic_regression_withprompts.R) <br /> `Data analysis:` (mixed effects) logistic regression  | **Mar 6** <br /> `Data analysis:` Frequent issues and solutions in mixed effects modeling; data wrangling |
+| 9 | **Mar 4** [slides](slides/5_mixed_effects_logistic_regression.pdf) [code sheet](code_sheets/5_mixed_effects_logistic_regression_withprompts.R) <br /> `Data analysis:` (mixed effects) logistic regression  | **Mar 6** <br /> `Data analysis:` Frequent issues and solutions in mixed effects modeling; data wrangling |
 | 10 | **Mar 11**  <br />  `Data analysis:` (optional) Ordinal regression; Data analysis workshop  <br /> [Bürkner & Vuorre 2019](https://journals.sagepub.com/doi/pdf/10.1177/2515245918823199) | **Mar 13**  <br /> `Project:` Final presentations    | 
 
 
