@@ -12,9 +12,9 @@ Instead of office hours, please book a meeting at jdegen.youcanbook.me if you wo
 
 ## TA
 
-| Name:        | Will Clapp           | 
-| Contact: | wsclapp@stanford.edu  | 
-| Office hours: | Thu, 2-3:30, 460-060 (ALPS Lab) | 
+| Name:        | Bran Papineau           | 
+| Contact: | branpap@stanford.edu  | 
+| Office hours: | Time TBD, 460-060 (ALPS Lab) | 
 
 
 
@@ -52,12 +52,12 @@ If you feel overwhelmed by any of these except 1., don't worry. It will take wor
 ## Readings
 
 We'll be making use of original papers, blog posts / online articles, as well as the following textbooks:
-1. The bible of mixed effects models: Gelman, A., & Hill, J. (2007). [Data analysis using regression and multilevel/hierarchical models](https://canvas.stanford.edu/courses/173623/files/11346488/download). Cambridge University Press.
+1. The bible of mixed effects models: Gelman, A., & Hill, J. (2007). [Data analysis using regression and multilevel/hierarchical models](https://canvas.stanford.edu/files/12702650/download). Cambridge University Press.
 2. Rosenthal, R., & Rosnow, R. L. (2008). Essentials of behavioral research: Methods and data analysis (3rd ed.). McGraw-Hill.
 3. Frank, M.C., Braginsky, M., Cachia, J.,  Coles, N., Hardwicke, T., Hawkins, R., Mathur, M., and Williams, R. [Experimentology: An Open Science Approach to Experimental Psychology Methods](https://experimentology.io/).
 
 
-[This list of questions](https://canvas.stanford.edu/courses/173623/files/11346473/download) will help guide reading experimental papers.
+[This list of questions](https://canvas.stanford.edu/files/12702649/download?download_frd=1) will help guide reading experimental papers.
 
 ## Class projects
 
@@ -67,16 +67,19 @@ Each student will complete a class project, which will be either a replication o
 
 ## Schedule
 
-The course will meet Tuesdays from 10-11:20am in Room 460-048.
+The course will meet Mondays and Wednesdays from 10-11:20am in Room 460-048.
 
+Holidays:
+Jan 15 MLK Day
+Feb 19 Presidents' Day
 
 | Week | Date and topic    |  Date and Topic   |
 |:----:| ---------------------- | ---------------------- |
-| 1 | **Apr 4** [slides](slides/1_overview.pdf) <br /> Course planning; Linking hypotheses; Experimental design basics <br /> [Tanenhaus 2004](https://canvas.stanford.edu/files/11346472/download?download_frd=1); [Ch. 7 of R & R](https://canvas.stanford.edu/files/11346510/download?download_frd=1); [Ch. 1, 8, 9 of Experimentology](https://experimentology.io/) | **Apr 6**  <br /> What does it mean to test a theory? <br /> [Popper](https://plato.stanford.edu/entries/popper/#GroHumKno); [Kuhn](https://plato.stanford.edu/entries/thomas-kuhn/#3); [Lakatos](https://en.wikipedia.org/wiki/Imre_Lakatos#Research_programmes)|
-| 2 | **Apr 11** <br /> `Skills:` [git tutorial](https://sebschu.github.io/web-based-experiments/tutorials/git/); GitHub repo organization |  **Apr 13** <br /> `SI:` response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/11346456/download?download_frd=1); [Kursat & Degen 2020](https://canvas.stanford.edu/files/11449047/download?download_frd=1) |
-| 3 | **Apr 18** <br /> `SI:` reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/11448809/download?download_frd=1); [Politzer-Ahles & Husband 2018](https://canvas.stanford.edu/files/11449066/download?download_frd=1) | **Apr 20** <br /> `SI:` visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/11448810/download?download_frd=1), p. 376-390, 404-410; [Sun & Breheny 2020](https://canvas.stanford.edu/files/11448811/download?download_frd=1), p. 949-956, 971-978 |
+| 1 | **Apr 4** [slides](slides/1_overview.pdf) <br /> Course planning; Linking hypotheses; Experimental design basics <br /> [Tanenhaus 2004](https://canvas.stanford.edu/files/12702648/download?download_frd=1); [Ch. 7 of R & R](https://canvas.stanford.edu/files/12702657/download?download_frd=1); [Ch. 1, 8, 9 of Experimentology](https://experimentology.io/) | **Apr 6**  <br /> What does it mean to test a theory? <br /> [Popper](https://plato.stanford.edu/entries/popper/#GroHumKno); [Kuhn](https://plato.stanford.edu/entries/thomas-kuhn/#3); [Lakatos](https://en.wikipedia.org/wiki/Imre_Lakatos#Research_programmes)|
+| 2 | **Apr 11** <br /> `Skills:` [git tutorial](https://sebschu.github.io/web-based-experiments/tutorials/git/); GitHub repo organization |  **Apr 13** <br /> `SI:` response times  <br />  [Bott & Noveck 2004](https://canvas.stanford.edu/files/12702646/download?download_frd=1); [Kursat & Degen 2020](https://canvas.stanford.edu/files/12702668/download?download_frd=1) |
+| 3 | **Apr 18** <br /> `SI:` reading times <br />  [Breheny et al 2006](https://canvas.stanford.edu/files/12702666/download?download_frd=1); [Politzer-Ahles & Husband 2018](https://canvas.stanford.edu/files/12702669/download?download_frd=1) | **Apr 20** <br /> `SI:` visual world eye-tracking <br />  [Huang & Snedeker 2009](https://canvas.stanford.edu/files/12702665/download?download_frd=1), p. 376-390, 404-410; [Sun & Breheny 2020](https://canvas.stanford.edu/files/12702667/download?download_frd=1), p. 949-956, 971-978 |
 | 4 | **Apr 25**  <br />  `Project:` Lightning presentations    | **Apr 27** [slides](slides/2_webbased_experiments.pdf) <br />  `Skills:` [Programming experiments in jsPsych](https://sebschu.github.io/web-based-experiments/tutorials/jsPsych/)   |
-| 5 | **May 2**  [slides](slides/3_preregistration_open_science.pdf) <br /> Open science and pre-registration   <br /> [Simmons et al 2011](https://canvas.stanford.edu/files/11346508/download?download_frd=1); [Frank & Saxe 2012](https://journals.sagepub.com/doi/full/10.1177/1745691612460686); [Open Science Framework 2015](https://canvas.stanford.edu/files/11346507/download?download_frd=1); [Ch. 3 of Experimentology](https://experimentology.io/3-replication) | **May 4** <br /> `Skills:` [Deploying an experiment on GitHub Pages; Using proliferate to post experiments to Prolific](https://sebschu.com/web-based-experiments/tutorials/posting/) <br /> [Degen & Tonhauser 2022](https://canvas.stanford.edu/files/11460231/download?download_frd=1); [Crump et al 2013](https://canvas.stanford.edu/files/11346516/download?download_frd=1) |
+| 5 | **May 2**  [slides](slides/3_preregistration_open_science.pdf) <br /> Open science and pre-registration   <br /> [Simmons et al 2011](https://canvas.stanford.edu/files/12702652/download?download_frd=1); [Frank & Saxe 2012](https://journals.sagepub.com/doi/full/10.1177/1745691612460686); [Open Science Framework 2015](https://canvas.stanford.edu/files/12702651/download?download_frd=1); [Ch. 3 of Experimentology](https://experimentology.io/3-replication) | **May 4** <br /> `Skills:` [Deploying an experiment on GitHub Pages; Using proliferate to post experiments to Prolific](https://sebschu.com/web-based-experiments/tutorials/posting/) <br /> [Degen & Tonhauser 2022](https://canvas.stanford.edu/files/12702670/download?download_frd=1); [Crump et al 2013](https://canvas.stanford.edu/files/12702658/download?download_frd=1) |
 | 6 | **May 9** <br /> `Project:` Experiment workshop | **May 11** [code sheet](code_sheets/4_ggplot.Rmd) <br /> `Data analysis:` visualization with ggplot |
 | 7 | **May 16** [code sheet](code_sheets/1_linear_regression_withprompts.R) <br />  `Data analysis:` estimation, inference, linear regression | **May 18** <br /> `Data analysis:` linear regression and coefficient interpretation |
 | 8 | **May 23** [code sheet](code_sheets/2_mixed_effects_linear_regression_withprompts.R) <br />  `Data analysis:` mixed effects linear regression | **May 25** [slides](slides/5_mixed_effects_logistic_regression.pdf) [code sheet](code_sheets/5_mixed_effects_logistic_regression_withprompts.R) <br /> `Data analysis:` (mixed effects) logistic regression  |
