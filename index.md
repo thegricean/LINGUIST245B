@@ -67,11 +67,8 @@ Each student will complete a class project, which will be either a replication o
 
 ## Schedule
 
-The course will meet Mondays and Wednesdays from 10-11:20am in Room 460-048.
+The course will meet Mondays and Wednesdays from 10:30-11:50am in Room 460-048.
 
-Holidays:
-Jan 15 MLK Day
-Feb 19 Presidents' Day
 
 | Week | Date and topic    |  Date and Topic   |
 |:----:| ---------------------- | ---------------------- |
