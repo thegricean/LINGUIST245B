@@ -1,6 +1,6 @@
 # Mixed effects linear regression
 # Created by jdegen on Sep 16, 2016
-# Updated by jdegen on May 23, 2023
+# Updated by jdegen on Feb 28, 2024
 
 library(languageR)
 library(tidyverse)
@@ -53,11 +53,16 @@ r.squaredGLMM(m)
 m = lmer(RT ~ cFrequency*cLanguageBackground + (1+cFrequency|Subject) + (1+cLanguageBackground|Word), data=lexdec, REML=F)
 summary(m)
 
+# To de-correlate random effects, use the "||" syntax
+m = lmer(RT ~ cFrequency*cLanguageBackground + (1+cFrequency || Subject) + (1+cLanguageBackground || Word), data=lexdec, REML=F)
+summary(m)
+
 ranef(m)
 
-re_participant = tibble(intercept=ranef(m)$Subject[1][,c("(Intercept)")],slope=ranef(m)$Subject[2][,c("cFrequency")],type="participant")
+# Replot random slope against random intercepts
+re_participant = tibble(intercept=ranef(m)$Subject[,c("(Intercept)")],slope=ranef(m)$Subject[,c("cFrequency")],type="participant")
 
-re_item = tibble(intercept=ranef(m)$Word[1][,c("(Intercept)")],slope=ranef(m)$Word[2][,c("cLanguageBackground")],type="item")
+re_item = tibble(intercept=ranef(m)$Word[,c("(Intercept)")],slope=ranef(m)$Word[,c("cLanguageBackground")],type="item")
 
 re = bind_rows(re_participant,re_item)
 
@@ -70,10 +75,11 @@ ggplot(re, aes(x=intercept,y=slope)) +
 
 
 # Let's run the same model the Bayesian way:
-m.b = brm(RT ~ cFrequency*cLanguageBackground + (1+cFrequency|Subject) + (1+cLanguageBackground|Word), 
+m.b = brm(RT ~ cFrequency*cLanguageBackground + (1+cFrequency|Subject)  + (1+cLanguageBackground|Word), 
           data=lexdec,
-          cores = 4)
+          cores=4)
 summary(m.b)
+
 
 # Hypothesis-testing. What is the Bayes Factor and the probability of the frequency main effect being greater than 0?
 h <- hypothesis(m.b, "cFrequency < 0")
@@ -91,7 +97,6 @@ print(h, digits = 4)
 bayes_R2(m.b)
 
 
-
 # How do we get p-values in frequentist models? The lmer authors make various suggestions here:
 ?pvalues
 
@@ -104,12 +109,12 @@ summary(m.1)
 
 anova(m.0,m.1)
 
-# To compute p-values for fixed effects via lmerTest:
+# To compute p-values for fixed effects via Satterthwaite approximations (uses the lmerTest package):
 
 # Run the following two commands if you haven't installed the packages:
 #
 # install.packages("lmerTest")
 
 library(lmerTest)
-m.3 = lmer(RT ~ Frequency + NativeLanguage + (1|Subject) + (1|Word), data=lexdec, REML=F)
+m.3 = lmer(RT ~ Frequency + LanguageBackground + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m.3)
