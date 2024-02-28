@@ -1,6 +1,6 @@
 # R basics and linear regression
 # Created by jdegen on Sep 16, 2016
-# Updated by jdegen on May 15, 2023
+# Updated by jdegen on Feb 28, 2024
 
 # Load the `languageR` and `brms` packages. If they're not yet installed you'll get an error saying "Error in library(languageR) : there is no package called ‘languageR’". To install the package, first type and execute `install.packages("languageR")`. (This generalizes to any package, using the name of the package instead of "languageR".)
 library(languageR)
@@ -85,6 +85,19 @@ summary(m.b)
 m.b = brm(RT ~ Frequency*LanguageBackground, data=lexdec)
 summary(m.b)
 
+# Interpretation of coefficients: how does the meaning of the estimates change if we center predictors?
+lexdec = lexdec %>% 
+  mutate(cFrequency = Frequency - mean(Frequency),
+         cLanguageBackground = as.numeric(as.factor(LanguageBackground)) - mean(as.numeric(as.factor(LanguageBackground))))
+
+# Frequentist
+m.f = lm(RT ~ cFrequency*cLanguageBackground, data=lexdec)
+summary(m.f)
+
+# Bayesian: 
+m.b = brm(RT ~ cFrequency*cLanguageBackground, data=lexdec)
+summary(m.b)
+
 
 # Extra: To get a sense for whether the linear modeling assumptions of homoscedasticity and normality of residuals are met, let's run a model with untransformed RTs and frequencies to contrast with:
 lexdec$rawRT = exp(lexdec$RT)
@@ -94,7 +107,7 @@ m.raw = lm(rawRT ~ rawFrequency, data = lexdec)
 summary(m.raw)
 
 # Create histograms of residuals to apply the "interocular" test for normality (i.e., look at the distributions).
-lexdec$residual = residuals(m)
+lexdec$residual = residuals(m.f)
 lexdec$rawResidual = residuals(m.raw)
 
 # Normality of residuals assumption met (reasonably well) for log RTs:
@@ -115,5 +128,5 @@ ggplot(lexdec, aes(x=Frequency,y=residual)) +
 ggplot(lexdec, aes(x=rawFrequency,y=rawResidual)) +
   geom_point()
 
-
+# Independence of samples assumption: NOT MET (repeated measures for each participant)
 
