@@ -31,7 +31,7 @@ head(wd)
 # b) add word info (frequency, family size).
 
 # We can easily switch between long and wide format using the pivot_longer() and pivot_wider() functions from the tidyr package. See the data import cheat sheet: https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf
-# Note: instead of gather(), consider using pivot_longer(), and instead of sprea(), pivot_wider()
+
 long = wide %>%
   pivot_longer(cols=!c("Subject","Sex","NativeLanguage"),names_to="Word",values_to="RT") %>%
   arrange(Subject)

@@ -88,7 +88,7 @@ m = lmer(RT ~ Length * Frequency + (1|Subject) + (1|Word), data=lexdec, REML=F)
 summary(m)
 vif.mer(m)
 
-pairscor.fnc(lexdec[,c("RT","Length","Frequency")])
+pairscor.fnc(lexdec[,c("Length","Frequency")])
 
 lexdec = lexdec %>% 
   mutate(cLength = Length - mean(Length),
